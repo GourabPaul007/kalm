@@ -1,0 +1,116 @@
+body,
+html {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  font-family: "Fredoka", "Poppins", sans-serif !important;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/images/wallpapers/desert_tree.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* .bg {
+  background-image: url("https://source.unsplash.com/category/nature/1920x1080");
+  background-size: cover;
+  height: 100vh;
+} */
+
+.bg h1,
+h2,
+h3 {
+  /* font-family: "Helvetica Neue"; */
+  color: white;
+  font-size: 15vw;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0;
+}
+
+.bg h3 {
+  font-size: 4vw;
+}
+
+.bg h2 {
+  font-size: 3vw;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.top-left {
+  position: fixed;
+  top: 2vh;
+  left: 2vh;
+}
+
+.top-right {
+  position: fixed;
+  top: 2vh;
+  right: 2vh;
+}
+
+.bottom-third {
+  position: fixed;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.block-text h1,
+h2 {
+  display: inline;
+}
+
+.quote {
+  /* font-family: "Helvetica Neue"; */
+  color: white;
+  font-size: 2vw;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+
+#quote-text {
+  font-size: 1.5vw;
+}
+
+#apps {
+  color: white;
+  font-size: 28px;
+}
+
+.weather {
+  color: white;
+  font-size: 36px;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+
+#location {
+  margin: 0;
+  font-size: 24px;
+  text-align: right;
+}
+
+#time {
+  font-size: 240px;
+}
+
+#greetings {
+  text-align: center;
+  padding: 24px;
+}
