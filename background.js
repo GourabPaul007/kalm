@@ -27,7 +27,7 @@ chrome.storage.sync.get("showSidebar", ({ showSidebar }) => {
   if (showSidebar === false) {
     width = "0px";
   } else {
-    width = "72px";
+    width = "56px";
   }
   document.getElementById("sidebarBlock").style.width = width;
 });
