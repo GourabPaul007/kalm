@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="homePage.css" />
+    <link rel="stylesheet" href="./settingsModal/settingsModal.css" />
+    <link rel="stylesheet" href="./sidebar/sidebar.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins&display=swap" rel="stylesheet">
@@ -16,11 +18,12 @@
   <body>
     <div class="bg">
       
-      <div class="top-left" >
+      <div class="top-left">
         <!-- <i class="bi bi-grid-3x3-gap-fill"></i> -->
-        <a href="https://www.google.co.in/intl/en/about/products?tab=rh" target="_blank" id="apps">
-          <i class="bi bi-grid"></i>
-        </a>
+        <!-- <a href="https://www.google.co.in/intl/en/about/products?tab=rh" target="_blank" id="apps"> -->
+          <i class="bi bi-grid" id="sidebarOpenbtn"></i>
+        <!-- </a> -->
+        <!-- <button class="openbtn" id="sidebarBtn">☰ Open Sidebar</button>  -->
       </div>
 
       <div class ="text-right top-right weather">
@@ -31,19 +34,112 @@
         <div id="location">Kolkata</div>
       </div>
       <div class ="text-center centered">
-          <div class="block-text">
-            <h1 id="time"></h1>
-            <!-- <h2 id="ampm">AM</h2> -->
-          </div>
-          <h3 id="greetings">Good morning</h3>
+        <div id="time-div">
+          <h1 id="time"></h1>
+          <!-- <h2 id="ampm">AM</h2> -->
+        </div>
+        <h3 id="greetings">Good Afternoon</h3>
       </div>
       <div class ="text-center bottom-third quote">
-          <div id="quote-text">"pee pee poo poo" - cum</div>
+        <div id="quote-text">"pee pee poo poo" - cum</div>
       </div>
     </div>
     </div>
 
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-- SideBar -->
+    <div id="sidebarBlock" class="sidebar">
+      <a id="closeSidebarBtn">
+        <i class="bi bi-x-circle"></i>
+      </a>
+      <a href="https://discord.com/app" target="_blank">
+        <i class="bi bi-discord"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank">
+        <i class="bi bi-youtube"></i>
+      </a>
+      <a href="https://web.whatsapp.com/" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+      <a href="" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#818181">
+          <path d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 
+            338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"/>
+        </svg>
+      </a>
+      <a href="#" style="margin-top: auto;">
+        <i class="bi bi-gear" id="settingsBtn"></i>
+      </a>
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-- Settings Button -->
+    <i class="bi bi-gear" id="settingsBtn"></i>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h4>Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+        <div class="modal-footer">
+          <h4>Modal Footer</h4>
+        </div>
+      </div>
+    </div>
     
+
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-- Scripts -->
     <script src="../background.js"></script>
+    <script src="./settingsModal/settingsModal.js"></script>
+    <script src="./sidebar/sidebar.js"></script>
   </body>
 </html>

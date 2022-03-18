@@ -15,6 +15,23 @@
 //   // );
 // });
 
+// set the showSidebar to false on install
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.sync.set({ showSidebar: false });
+});
+
+// get the showSidebar on runtime
+chrome.storage.sync.get("showSidebar", ({ showSidebar }) => {
+  // changeColor.style.backgroundColor = color;
+  let width = "0px";
+  if (showSidebar === false) {
+    width = "0px";
+  } else {
+    width = "72px";
+  }
+  document.getElementById("sidebarBlock").style.width = width;
+});
+
 function getTime() {
   let date = new Date();
   let time = `${date.getHours()}:${date.getMinutes()}`;
