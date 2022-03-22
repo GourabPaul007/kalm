@@ -1,15 +1,17 @@
-body,
-html {
+body {
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
-  font-family: "Poppins", "Fredoka", sans-serif !important;
+  font-family: "Poppins", "Fredoka", sans-serif;
+}
+p {
+  font-size: 20px;
 }
 
 .bg {
   /* The image used */
-  background-image: url("/images/wallpapers/desert_tree.jpg");
+  /* background: var(--todaysImage); */
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
@@ -52,8 +54,8 @@ h3 {
 
 .top-left {
   position: fixed;
-  top: 2vh;
-  left: 3vh;
+  top: 12px;
+  left: 12px;
 }
 
 .top-right {
@@ -74,8 +76,9 @@ h3 {
   justify-content: center;
 }
 #time {
-  font-size: 240px;
-  font-weight: 400;
+  font-size: 160px;
+  font-weight: 100;
+  user-select: none;
 }
 
 .quote {
@@ -116,6 +119,8 @@ h3 {
 #greetings {
   text-align: center;
   padding: 24px;
+  font-size: 48px;
+  font-weight: 100;
 }
 
 #settingsBtn {

@@ -17,3 +17,20 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+// change font
+document.getElementById("fontSelect").addEventListener("change", async (e) => {
+  var font = new FontFace(
+    e.target.value,
+    `url(../../assets/fonts/${e.target.value}.ttf)`
+  );
+  await font
+    .load()
+    .then(function (loaded_face) {
+      document.fonts.add(loaded_face);
+      document.body.style.fontFamily = `${loaded_face.family}`;
+    })
+    .catch(function (error) {
+      console.log("Something went wrong during font loading.", error);
+    });
+});
