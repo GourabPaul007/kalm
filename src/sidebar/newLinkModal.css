@@ -1,0 +1,65 @@
+/* ================================================================================================================= */
+/* ================================================================================================================= */
+/* ================================================================================================================= */
+/* The "add new link" modal */
+#addLinkModal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  z-index: 2;
+  width: 100%;
+  color: #f1f1f1;
+  border-radius: 12px;
+}
+
+#cancelLinkCreationButton {
+  color: #939393;
+  font-size: 16px;
+  margin-right: auto;
+}
+#cancelLinkCreationButton .bi-arrow-left-short {
+  font-size: 24 !important;
+}
+#cancelLinkCreationButton:hover {
+  cursor: pointer;
+}
+
+#addLinkModal p {
+  margin: 0px;
+  padding: 0px;
+  margin-right: auto;
+  font-size: 16px;
+}
+
+.linkInput {
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 220px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #717171;
+  color: #fff;
+  transition: all 0.25s ease 0s;
+  background-color: transparent;
+}
+.linkInput:focus {
+  border-bottom: 1px solid white;
+}
+
+#saveLinkButton {
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 25px;
+  background-color: rgb(31, 129, 31);
+  margin-left: auto;
+}
+#saveLinkButton:hover {
+  background-color: rgb(21, 85, 21);
+  cursor: pointer;
+}

@@ -17,6 +17,19 @@ const sidebarWidth = "128px";
 //   // );
 // });
 
+function setTime() {
+  let date = new Date();
+  let timeFormat = 24;
+  let time = date.toLocaleTimeString(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: timeFormat === 12 ? true : false,
+  });
+  document.getElementById("time").innerText = time.substring(0, 5);
+}
+setTime();
+
 // set the showSidebar to false on install
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ showSidebar: false });
@@ -41,16 +54,7 @@ chrome.runtime.onInstalled.addListener(() => {
 // get the time and show it on each second
 chrome.alarms.create({ periodInMinutes: 1 / 60 });
 chrome.alarms.onAlarm.addListener(() => {
-  let date = new Date();
-  let timeFormat = 24;
-  let time = date.toLocaleTimeString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: timeFormat === 12 ? true : false,
-  });
-  // let time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-  document.getElementById("time").innerText = time.substring(0, 5);
+  setTime();
 });
 
 // Greetings
@@ -83,3 +87,38 @@ document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
 //     // Tab opened.
 //   });
 // });
+
+/**
+ * Inside background.js
+ *
+ * Set the links in sidebar on startup
+ */
+function initLinks() {
+  // let link = document.createElement("a");
+  // let image = document.creimageteElement("img");
+  // link.setAttribute("href","youtube.com");
+  chrome.storage.local.get("links", function (result) {
+    for (let i = 0; i < result.links.length; i++) {
+      const element = result.links[i];
+      document.getElementById("linksModal").insertAdjacentHTML(
+        "beforeend",
+        `<div class="linkItem" id='${element.elementId}'>
+          <a href='${element.linkLinks[0]}'>
+            <img 
+              class='favicon' 
+              src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks}&size=16' 
+              alt=''
+            />
+            <span>&nbsp;${element.linkTitle} bruh</span>
+          </a>
+          <div class='linkMoreOptions' id='linkMoreOptions${element.elementId}'>
+            <i class="bi bi-three-dots"></i>
+          </div>
+        </div>`
+      );
+    }
+  });
+}
+initLinks();
+
+// chrome.storage.local.clear();

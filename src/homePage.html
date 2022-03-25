@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="homePage.css" />
     <link rel="stylesheet" href="./settingsModal/settingsModal.css" />
     <link rel="stylesheet" href="./sidebar/sidebar.css" />
+    <link rel="stylesheet" href="./sidebar/eachLink.css" />
+    <link rel="stylesheet" href="./sidebar/newLinkModal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins&display=swap" rel="stylesheet"> -->
@@ -50,57 +52,72 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!-- SideBar -->
-    <div class="sidebar">
-      <a href="chrome://apps/" class="local">
-        <svg id="defaultLinks" viewBox="0 0 20 20" width="16" height="16">
-          <path
-            d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,
-            -2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,
-            -2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,
-            6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,
-            2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,
-            -2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"
-          ></path>
-        </svg>
-        <span>&nbsp;Apps</span>
-      </a>
-      <a href="https://youtube.com">
-        <img
-          class="favicon"
-          src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.youtube.com&size=16"
-          alt=""
-        />
-        <span>&nbsp;Youtube</span>
-      </a>
-      <!-- <a href="https://www.youtube.com">
-        <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.youtube.com&size=24" alt="">
-      </a> -->
-
-      <div id="addLinkIconButton">
-        <i class="bi bi-plus-circle"></i>
-        <span>&nbsp;Add link</span>
+    <div id="sidebar">
+      <!-- LinksDiv with addLink button -->
+      <div id="linksDiv">
+        <!-- only links reside here, in this div -->
+        <div id="linksModal">
+          <a href="chrome://apps/" class="local">
+            <svg id="defaultLinks" viewBox="0 0 20 20" width="16" height="16">
+              <path
+                d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,
+              -2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,
+              -2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,
+              6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,
+              2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,
+              -2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"
+              ></path>
+            </svg>
+            <span>&nbsp;Apps</span>
+          </a>
+          <div class="linkItem">
+            <a href="https://twitter.com">
+              <img
+                class="favicon"
+                src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.twitter.com&size=16"
+                alt=""
+              />
+              <span>&nbsp;Twitter</span>
+            </a>
+            <div class="linkMoreOptions" id="linkMoreOptions111">
+              <i class="bi bi-three-dots"></i>
+            </div>
+          </div>
+          <div class="linkItem" id="222">
+            <a href="https://youtube.com">
+              <img
+                class="favicon"
+                src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.youtube.com&size=16"
+                alt=""
+              />
+              <span>&nbsp;Youtube</span>
+            </a>
+            <div class="linkMoreOptions" id="linkMoreOptions222">
+              <i class="bi bi-three-dots"></i>
+            </div>
+          </div>
+        </div>
+        <div id="addLinkIconButton">
+          <i class="bi bi-plus-circle"></i>
+          <span>&nbsp;Add link</span>
+        </div>
       </div>
-      <a href="chrome://apps">
-        <span>&nbsp;Apps</span>
-      </a>
-    </div>
-    <!---------------------------------------------------------------------------------------------------------------->
-    <!---------------------------------------------------------------------------------------------------------------->
-    <!---------------------------------------------------------------------------------------------------------------->
-    <!-- AddLink -->
-    <div class="addLinkModal">
-      <br /><br />
-      <p>Title</p>
-      <input class="linkInput" type="text" id="title" name="title" />
-      <br />
-      <p>Link</p>
-      <input class="linkInput" type="text" id="link" name="link" />
-      <br />
-      <div class="buttonGroup">
-        <button id="cancelLink">Cancel</button>
-        <button id="saveLink">Save</button>
+      <!-- AddLink -->
+      <div id="addLinkModal">
+        <div id="cancelLinkCreationButton">
+          <i class="bi bi-arrow-left"></i>
+          <span>&nbsp;Go back</span>
+        </div>
+        <br />
+        <br />
+        <p>Title</p>
+        <input class="linkInput" type="text" id="linkTitleInput" name="title" />
+        <br />
+        <p>Link</p>
+        <input class="linkInput" type="text" id="linkLinksInput" name="link" />
+        <br />
+        <button id="saveLinkButton">Save</button>
       </div>
-      <br /><br />
     </div>
 
     <!---------------------------------------------------------------------------------------------------------------->
