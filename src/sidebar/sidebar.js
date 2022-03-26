@@ -21,13 +21,13 @@ document.getElementById("saveLinkButton").onclick = function () {
 };
 
 document.getElementById("sidebar").onclick = function (e) {
-  let el;
   if (e.target.classList.contains("linkMoreOptions")) {
-    el = e.target.parentElement;
+    let el = e.target.parentElement;
+    new SidebarFunctionality().onPressDelete(el);
   } else if (e.target.classList.contains("moreOptionsIcon")) {
-    el = e.target.parentElement.parentElement;
+    let el = e.target.parentElement.parentElement;
+    new SidebarFunctionality().onPressDelete(el);
   }
-  new SidebarFunctionality().onPressDelete(el);
 };
 
 class SidebarNavigation {
@@ -65,35 +65,30 @@ class SidebarFunctionality {
     document.getElementById("addLinkModal").style.display = "flex";
     document.getElementById("sidebar").classList.add("next");
   }
-
   onPressGoBack() {
     document.getElementById("linksDiv").style.display = "flex";
     document.getElementById("addLinkModal").style.display = "none";
     document.getElementById("sidebar").classList.remove("next");
   }
-
   /**
    *  Update Links on addLink button click in sidebar
    * */
   addLink() {
     let linkTitleInput = document.getElementById("linkTitleInput").value;
     let linkLinksInput = document.getElementById("linkLinksInput").value;
-    chrome.storage.local.get({ links: [] }, function (result) {
+    chrome.storage.sync.get({ links: [] }, function (result) {
       let links = result.links;
-      if (
-        (linkTitleInput == null || linkTitleInput == "") &&
-        (linkLinksInput == [null] || linkLinksInput == [""])
-      )
-        return;
-
+      if (linkTitleInput == "" && linkLinksInput == [""]) return;
       links.push({
         linkTitle: linkTitleInput,
         linkLinks: [linkLinksInput],
         elementId: Date.now().toString(),
       });
-      chrome.storage.local.set({ links: links }, function () {
+      chrome.storage.sync.set({ links: links }, function () {
         initLinks();
       });
+      // Go back after saving the link
+      new SidebarFunctionality().onPressGoBack();
     });
   }
   /**
@@ -113,9 +108,8 @@ class SidebarFunctionality {
       return true;
     }
   }
-
   onPressDelete(el) {
-    chrome.storage.local.get({ links: [] }, function (result) {
+    chrome.storage.sync.get({ links: [] }, function (result) {
       let links = result.links;
       for (let i = 0; i < links.length; i++) {
         if (links[i].elementId === el.id) {
@@ -123,7 +117,7 @@ class SidebarFunctionality {
           links.splice(links.indexOf(links[i]), 1);
         }
       }
-      chrome.storage.local.set({ links: links }, function () {
+      chrome.storage.sync.set({ links: links }, function () {
         initLinks();
       });
     });

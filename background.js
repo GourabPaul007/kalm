@@ -33,6 +33,7 @@ setTime();
 // set the showSidebar to false on install
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ showSidebar: false });
+  // chrome.storage.sync.set({ links: [] });
 });
 
 // get the showSidebar on runtime
@@ -86,18 +87,14 @@ document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
  * Set the links in sidebar on startup
  */
 function initLinks() {
-  // let link = document.createElement("a");
-  // let image = document.creimageteElement("img");
-  // link.setAttribute("href","youtube.com");
-  console.log(document.getElementById("linksModal").children);
   let oldLinks = Array.from(document.getElementById("linksModal").children);
   for (let i = 1; i < oldLinks.length; i++) {
     const element = oldLinks[i];
     document.getElementById("linksModal").removeChild(element);
   }
   // document.getElementById("linksModal").children.forEach((element) => {});
-
-  chrome.storage.local.get("links", function (result) {
+  chrome.storage.sync.get("links", function (result) {
+    if (!result.links) return;
     for (let i = 0; i < result.links.length; i++) {
       const element = result.links[i];
       document.getElementById("linksModal").insertAdjacentHTML(
@@ -122,4 +119,4 @@ function initLinks() {
 }
 initLinks();
 
-// chrome.storage.local.clear();
+// chrome.storage.sync.clear();

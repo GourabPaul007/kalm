@@ -13,7 +13,6 @@ document.getElementById("settingsBtn").onclick = function () {
 
 // when user clciks anything other than settings settingsModal, close it
 document.body.onclick = function (e) {
-  console.log(e);
   if (!settingsModal.contains(e.target) && e.target.id !== "settingsBtn") {
     settingsModal.style.display = "none";
     document.getElementById("settingsBtn").classList.remove("rotate");
