@@ -71,15 +71,7 @@ document.getElementById("greetings").innerText = (function () {
 
 // Background
 document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
-  images = [
-    'url("/images/wallpapers/desert_tree.jpg")',
-    'url("/images/wallpapers/dunes.jpg")',
-    'url("/images/wallpapers/fiord.jpg")',
-    'url("/images/wallpapers/snow_mountains.jpg")',
-    'url("/images/wallpapers/snow.jpg")',
-    'url("/images/wallpapers/sunset.jpg")',
-  ];
-  return images[Math.floor(Math.random() * 6)];
+  return images[Math.floor(Math.random() * images.length)];
 })();
 
 // chrome.browserAction.onClicked.addListener(function(tab) {
@@ -97,6 +89,14 @@ function initLinks() {
   // let link = document.createElement("a");
   // let image = document.creimageteElement("img");
   // link.setAttribute("href","youtube.com");
+  console.log(document.getElementById("linksModal").children);
+  let oldLinks = Array.from(document.getElementById("linksModal").children);
+  for (let i = 1; i < oldLinks.length; i++) {
+    const element = oldLinks[i];
+    document.getElementById("linksModal").removeChild(element);
+  }
+  // document.getElementById("linksModal").children.forEach((element) => {});
+
   chrome.storage.local.get("links", function (result) {
     for (let i = 0; i < result.links.length; i++) {
       const element = result.links[i];
@@ -104,17 +104,18 @@ function initLinks() {
         "beforeend",
         `<div class="linkItem" id='${element.elementId}'>
           <a href='${element.linkLinks[0]}'>
-            <img 
-              class='favicon' 
-              src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks}&size=16' 
+            <img
+              class='favicon'
+              src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks}&size=16'
               alt=''
             />
-            <span>&nbsp;${element.linkTitle} bruh</span>
+            <span>&nbsp;${element.linkTitle}</span>
           </a>
           <div class='linkMoreOptions' id='linkMoreOptions${element.elementId}'>
-            <i class="bi bi-three-dots"></i>
+            <i class="bi bi-trash moreOptionsIcon"></i>
           </div>
         </div>`
+        // <i class="bi bi-three-dots"></i>
       );
     }
   });

@@ -1,20 +1,34 @@
-// Get the modal
-var modal = document.getElementById("myModal");
+// Get the settingsModal
+var settingsModal = document.getElementById("settingsModal");
 
-// When the user clicks the button, open the modal
+// When the user clicks the button, open the settingsModal
 document.getElementById("settingsBtn").onclick = function () {
-  modal.style.display = "block";
+  if (settingsModal.style.display === "flex") {
+    settingsModal.style.display = "none";
+  } else {
+    settingsModal.style.display = "flex";
+  }
+  document.getElementById("settingsBtn").classList.toggle("rotate");
 };
 
-// When the user clicks on <span> (x), close the modal
+// when user clciks anything other than settings settingsModal, close it
+document.body.onclick = function (e) {
+  console.log(e);
+  if (!settingsModal.contains(e.target) && e.target.id !== "settingsBtn") {
+    settingsModal.style.display = "none";
+    document.getElementById("settingsBtn").classList.remove("rotate");
+  }
+};
+
+// When the user clicks on <span> (x), close the settingsModal
 document.getElementsByClassName("close")[0].onclick = function () {
-  modal.style.display = "none";
+  settingsModal.style.display = "none";
 };
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the settingsModal, close it
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == settingsModal) {
+    settingsModal.style.display = "none";
   }
 };
 

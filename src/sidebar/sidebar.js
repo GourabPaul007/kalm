@@ -21,13 +21,17 @@ document.getElementById("saveLinkButton").onclick = function () {
 };
 
 document.getElementById("sidebar").onclick = function (e) {
-  let el = e.target.parentElement;
+  let el;
+  if (e.target.classList.contains("linkMoreOptions")) {
+    el = e.target.parentElement;
+  } else if (e.target.classList.contains("moreOptionsIcon")) {
+    el = e.target.parentElement.parentElement;
+  }
   new SidebarFunctionality().onPressDelete(el);
 };
 
 class SidebarNavigation {
   openSidebar() {
-    console.log(document.getElementById("sidebar").style.display);
     if (document.getElementById("sidebar").style.display === "flex") {
       document.getElementById("sidebar").style.display = "none";
     } else {
@@ -74,9 +78,7 @@ class SidebarFunctionality {
   addLink() {
     let linkTitleInput = document.getElementById("linkTitleInput").value;
     let linkLinksInput = document.getElementById("linkLinksInput").value;
-    console.log(linkLinksInput, linkTitleInput);
     chrome.storage.local.get({ links: [] }, function (result) {
-      console.log("WHAT");
       let links = result.links;
       if (
         (linkTitleInput == null || linkTitleInput == "") &&
@@ -113,7 +115,17 @@ class SidebarFunctionality {
   }
 
   onPressDelete(el) {
-    console.log(el.id, el);
-    // document.getElementById("linkMoreOptions").innerHTML = "";
+    chrome.storage.local.get({ links: [] }, function (result) {
+      let links = result.links;
+      for (let i = 0; i < links.length; i++) {
+        if (links[i].elementId === el.id) {
+          // links.remove(links[i]);
+          links.splice(links.indexOf(links[i]), 1);
+        }
+      }
+      chrome.storage.local.set({ links: links }, function () {
+        initLinks();
+      });
+    });
   }
 }

@@ -4,6 +4,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Poppins", "Fredoka", sans-serif;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 10%);
 }
 p {
   font-size: 20px;
@@ -47,7 +48,7 @@ h3 {
 
 .centered {
   position: fixed;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -76,9 +77,19 @@ h3 {
   justify-content: center;
 }
 #time {
-  font-size: 160px;
+  font-size: 170px;
   font-weight: 100;
+  letter-spacing: -5px;
+  text-align: center;
+  /* text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), 2px 2px 2px rgba(0, 0, 0, 0.1); */
   user-select: none;
+}
+
+#greetings {
+  text-align: center;
+  padding: 0px;
+  font-size: 48px;
+  font-weight: 100;
 }
 
 .quote {
@@ -116,21 +127,19 @@ h3 {
   text-align: right;
 }
 
-#greetings {
-  text-align: center;
-  padding: 24px;
-  font-size: 48px;
-  font-weight: 100;
-}
-
 #settingsBtn {
   position: fixed;
-  bottom: 24px;
-  left: 16px;
+  bottom: 16px;
+  left: 12px;
   font-size: 24px;
   color: white;
+  transition: all 0.2s linear;
 }
 #settingsBtn:hover {
   text-shadow: 0 0 10px grey;
   cursor: pointer;
+}
+#settingsBtn.rotate {
+  transform: rotate(90deg) scale(1.1);
+  /* scale: 0.2; */
 }
