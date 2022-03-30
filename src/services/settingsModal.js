@@ -47,3 +47,23 @@ document.getElementById("fontSelect").addEventListener("change", async (e) => {
       console.log("Something went wrong during font loading.", error);
     });
 });
+
+// Change Time Format
+document
+  .getElementById("timeFormatSelect")
+  .addEventListener("change", async (e) => {
+    console.log(e.target.value);
+    new SettingsRepository().setTimeFormatToLocalDatabase(e.target.value);
+  });
+
+// document.getElementById("openFile").onclick = async function () {
+//   // [fileHandle] = await window.showOpenFilePicker();
+//   let urlCreator = window.URL;
+//   const dirHandle = await window.showDirectoryPicker();
+//   for await (const entry of dirHandle.values()) {
+//     let file = await entry.getFile();
+//     let blob = await file.stream();
+//     console.log(entry.kind, entry.name, file);
+//     console.log(urlCreator.createObjectURL(blob));
+//   }
+// };

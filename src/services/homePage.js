@@ -1,0 +1,86 @@
+// document.getElementById("apps").addEventListener("click", () => {
+//   alert("bruh");
+// });
+
+function initTimeFormat() {
+  window.onload = function () {
+    let tf = new SettingsRepository().getTimeFormatFromLocalDatabase();
+    if (tf === "12" || tf === "24") {
+      globalTimeFormat = tf;
+    }
+    log(`initialized globalTimeFormat: ${globalTimeFormat}`);
+    // set the value in settings modal select button
+    document.getElementById("timeFormatSelect").value = globalTimeFormat;
+  };
+}
+initTimeFormat();
+
+// clock
+document.getElementById("time").innerText = getTime();
+// Greetings
+document.getElementById("greetings").innerText = greetings();
+
+// get the time and show it on each second
+setInterval(() => {
+  document.getElementById("time").innerText = getTime();
+}, 1000);
+
+document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
+  return images[Math.floor(Math.random() * images.length)];
+})();
+
+function getTime() {
+  let date = new Date();
+  let tf = globalTimeFormat;
+  let time = date.toLocaleTimeString(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: tf === "12" ? true : false,
+  });
+  return time.substring(0, 8);
+}
+
+function greetings() {
+  let currentHour = new Date().getHours();
+  if (currentHour >= 5 && currentHour < 12) return "Good morning";
+  if (currentHour >= 12 && currentHour < 14) return "Good noon";
+  if (currentHour >= 14 && currentHour < 18) return "Good afternoon";
+  if (currentHour >= 18 && currentHour < 21) return "Good evening";
+  if (currentHour >= 21) return "Good night";
+  return "Good Morning";
+}
+
+// Set the links in linksModal on startup
+function initLinks() {
+  let oldLinks = Array.from(document.getElementById("links").children);
+  for (let i = 1; i < oldLinks.length; i++) {
+    const element = oldLinks[i];
+    document.getElementById("links").removeChild(element);
+  }
+  // document.getElementById("linksModal").children.forEach((element) => {});
+  chrome.storage.sync.get("links", function (result) {
+    if (!result.links) return;
+    for (let i = 0; i < result.links.length; i++) {
+      const element = result.links[i];
+      document.getElementById("links").insertAdjacentHTML(
+        "beforeend",
+        `<div class="linkItem" id='${element.elementId}'>
+          <a href='${element.linkLinks[0]}'>
+            <img
+              class='favicon'
+              src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks}&size=16'
+              alt=''
+            />
+            <span>&nbsp;${element.linkTitle}</span>
+          </a>
+          <div class='linkMoreOptions' id='linkMoreOptions${element.elementId}'>
+            <i class="bi bi-three-dots moreOptionsIcon"></i>
+          </div>
+        </div>`
+        // <i class="bi bi-three-dots"></i>
+      );
+    }
+  });
+}
+initLinks();

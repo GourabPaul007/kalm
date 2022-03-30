@@ -22,8 +22,8 @@
     "48": "/assets/icons/get_started48.png",
     "128": "/assets/icons/get_started128.png"
   },
-  "options_page": "src/optionsPage/options.html",
+  "options_page": "src/view/options.html",
   "chrome_url_overrides": {
-    "newtab": "src/homePage.html"
+    "newtab": "src/view/homePage.html"
   }
 }

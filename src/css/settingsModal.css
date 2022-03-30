@@ -1,48 +1,30 @@
 #settingsModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
+  flex-direction: column;
   z-index: 1; /* Sit on top */
-  padding: 0px;
-  left: 0;
+  left: 48px;
   bottom: 48px;
   width: 400px;
   overflow-y: none;
   color: #b2b2b2;
   margin: 12px;
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
+  /* position: relative; */
   background-color: rgba(0, 0, 0, 0.7);
   margin: auto;
-  padding: 0;
-  width: 100%;
   padding: 12px 0px 12px 0px;
   border-radius: 12px;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  animation-direction: alternate;
 }
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {
-    bottom: -300px;
-    opacity: 0;
-  }
-  to {
-    bottom: 0;
-    opacity: 1;
-  }
-}
-
 @keyframes animatetop {
   from {
     bottom: -300px;
     opacity: 0;
   }
   to {
-    bottom: 0;
+    bottom: 48px;
     opacity: 1;
   }
 }

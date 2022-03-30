@@ -1,77 +1,95 @@
-document.getElementById("sidebarOpenbtn").onclick = function () {
-  new SidebarNavigation().openSidebar();
+// When you click the linksModalOpenBtn, open the Links Modal
+document.getElementById("linksModalOpenBtn").onclick = function () {
+  new LinksModalNavigation().openLinksModal();
 };
 
-// hide sidebar on any click outside of it
-window.onload = function () {
-  document.onclick = function (e) {
-    new SidebarNavigation().closeSidebar(e);
-  };
+// When user clciks anything other than linksModal, close it
+document.body.onclick = function (e) {
+  new LinksModalNavigation().closeLinksModal(e);
 };
 
+// Get user to add link modal on click of addLinkIconButton
 document.getElementById("addLinkIconButton").onclick = function () {
-  new SidebarFunctionality().onPressAddLink();
+  new LinksModalFunctionality().onPressAddLink();
 };
+
+// Go back to links modal on cancelLinkCreationButton click
 document.getElementById("cancelLinkCreationButton").onclick = function () {
-  new SidebarFunctionality().onPressGoBack();
+  new LinksModalFunctionality().onPressGoBack();
 };
 
+// When you click the save link button, save the link and go back to links modal
 document.getElementById("saveLinkButton").onclick = function () {
-  new SidebarFunctionality().addLink();
+  new LinksModalFunctionality().addLink();
 };
 
-document.getElementById("sidebar").onclick = function (e) {
+document.getElementById("linksModal").onclick = function (e) {
+  let moreOptionsDialog = document.getElementById("moreOptionsDialog");
   if (e.target.classList.contains("linkMoreOptions")) {
     let el = e.target.parentElement;
-    new SidebarFunctionality().onPressDelete(el);
+    moreOptionsDialog.classList.toggle("show");
+    moreOptionsDialog.style.top = `${e.clientY - 20}px`;
+    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
+    // moreOptionsDialog.style.left = e.target.posX;
+    document.getElementById("deleteLinkButton").onclick = () => {
+      new LinksModalFunctionality().onPressDelete(el);
+    };
+    // new LinksModalFunctionality().onPressDelete(el);
   } else if (e.target.classList.contains("moreOptionsIcon")) {
     let el = e.target.parentElement.parentElement;
-    new SidebarFunctionality().onPressDelete(el);
+    moreOptionsDialog.classList.toggle("show");
+    moreOptionsDialog.style.top = `${e.clientY - 20}px`;
+    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
+    document.getElementById("deleteLinkButton").onclick = () => {
+      new LinksModalFunctionality().onPressDelete(el);
+    };
+    // new LinksModalFunctionality().onPressDelete(el);
   }
 };
 
-class SidebarNavigation {
-  openSidebar() {
-    if (document.getElementById("sidebar").style.display === "flex") {
-      document.getElementById("sidebar").style.display = "none";
+class LinksModalNavigation {
+  openLinksModal() {
+    let linksModal = document.getElementById("linksModal");
+    if (linksModal.style.display === "flex") {
+      linksModal.style.display = "none";
     } else {
-      document.getElementById("sidebar").style.display = "flex";
+      linksModal.style.display = "flex";
     }
   }
 
-  closeSidebar(e) {
-    let divToHide = document.getElementById("sidebar");
-    if (!divToHide.contains(e.target) && e.target.id !== "sidebarOpenbtn") {
-      divToHide.style.display = "none";
+  closeLinksModal(e) {
+    let linksModal = document.getElementById("linksModal");
+    if (!linksModal.contains(e.target) && e.target.id !== "linksModalOpenBtn") {
+      linksModal.style.display = "none";
     }
   }
 
   // function openNav() {
   //   document.getElementById("sidebarOpenbtn").style.display = "none";
   //   document.getElementsByClassName("sidebar")[0].style.width = sidebarWidth;
-  //   chrome.storage.sync.set({ showSidebar: true });
+  //   chrome.storage.sync.set({ showLinksModal: true });
   // }
 
   // closeNav() {
   //   document.getElementById("sidebarOpenbtn").style.display = "block";
   //   document.getElementsByClassName("sidebar")[0].style.width = "0px";
-  //   chrome.storage.sync.set({ showSidebar: false });
+  //   chrome.storage.sync.set({ showLinksModal: false });
   // }
 }
 
-class SidebarFunctionality {
+class LinksModalFunctionality {
   onPressAddLink() {
     document.getElementById("linksDiv").style.display = "none";
     document.getElementById("addLinkModal").style.display = "flex";
-    document.getElementById("sidebar").classList.add("next");
+    document.getElementById("linksModal").classList.add("next");
   }
   onPressGoBack() {
     document.getElementById("linksDiv").style.display = "flex";
     document.getElementById("addLinkModal").style.display = "none";
-    document.getElementById("sidebar").classList.remove("next");
+    document.getElementById("linksModal").classList.remove("next");
   }
   /**
-   *  Update Links on addLink button click in sidebar
+   *  Update Links on addLink button click in linksModal
    * */
   addLink() {
     let linkTitleInput = document.getElementById("linkTitleInput").value;
@@ -88,13 +106,12 @@ class SidebarFunctionality {
         initLinks();
       });
       // Go back after saving the link
-      new SidebarFunctionality().onPressGoBack();
+      new LinksModalFunctionality().onPressGoBack();
     });
   }
   /**
    * @param {String} linkTitleInput
    * @param {String} linkLinksInput
-   * @returns {Boolean}
    * returns true or false after sanitizing inputs from addLinks modal
    * returns true ONLY if the parameters are sanitized
    */

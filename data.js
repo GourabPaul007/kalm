@@ -1,7 +1,3 @@
-// document.getElementById("apps").addEventListener("click", () => {
-//   alert("bruh");
-// });
-
 locaImages = [
   // 'url("/assets/images/wallpapers/desert_tree.jpg")',
   'url("/assets/images/wallpapers/dunes.jpg")',
@@ -12,7 +8,10 @@ locaImages = [
 ];
 
 onlineImages = [
-  "url(https://i.ibb.co/R32R0Pf/mike-meeks-zk-fcl-Jd-Gas-unsplash.jpg)",
+  "url(https://i.ibb.co/KF5BNQH/sunset.jpg)",
+  "url(https://i.ibb.co/8cypszv/fiord.jpg)",
+  "url(https://i.ibb.co/16qksXL/snow-mountains.jpg)",
+  "url(https://i.ibb.co/HpKR3fv/dunes.jpg",
 ];
 
-const images = locaImages;
+const images = onlineImages;
