@@ -1,8 +1,9 @@
 // Get the settingsModal
-var settingsModal = document.getElementById("settingsModal");
+// var settingsModal = document.getElementById("settingsModal");
 
 // When the user clicks the button, open the settingsModal
 document.getElementById("settingsBtn").onclick = function () {
+  let settingsModal = document.getElementById("settingsModal");
   if (settingsModal.style.display === "flex") {
     settingsModal.style.display = "none";
   } else {
@@ -12,7 +13,8 @@ document.getElementById("settingsBtn").onclick = function () {
 };
 
 // when user clciks anything other than settings settingsModal, close it
-document.body.onclick = function (e) {
+document.getElementsByClassName("bg")[0].onclick = function (e) {
+  let settingsModal = document.getElementById("settingsModal");
   if (!settingsModal.contains(e.target) && e.target.id !== "settingsBtn") {
     settingsModal.style.display = "none";
     document.getElementById("settingsBtn").classList.remove("rotate");
@@ -21,15 +23,18 @@ document.body.onclick = function (e) {
 
 // When the user clicks on <span> (x), close the settingsModal
 document.getElementsByClassName("close")[0].onclick = function () {
+  let settingsModal = document.getElementById("settingsModal");
   settingsModal.style.display = "none";
+  document.getElementById("settingsBtn").classList.remove("rotate");
 };
 
 // When the user clicks anywhere outside of the settingsModal, close it
-window.onclick = function (event) {
-  if (event.target == settingsModal) {
-    settingsModal.style.display = "none";
-  }
-};
+// window.onclick = function (event) {
+//   if (event.target == settingsModal) {
+//     let settingsModal = document.getElementById("settingsModal");
+//     settingsModal.style.display = "none";
+//   }
+// };
 
 // change font
 document.getElementById("fontSelect").addEventListener("change", async (e) => {
