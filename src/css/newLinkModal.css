@@ -48,7 +48,15 @@
   border-bottom: 1px solid white;
 }
 
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
 #saveLinkButton {
+  /* display: none; */
   font-size: 16px;
   width: 90px;
   height: 30px;
@@ -61,5 +69,22 @@
 }
 #saveLinkButton:hover {
   background-color: rgb(21, 85, 21);
+  cursor: pointer;
+}
+
+#updateLinkButton {
+  /* display: none; */
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 25px;
+  background-color: rgb(31, 169, 204);
+  margin-left: auto;
+}
+#updateLinkButton:hover {
+  background-color: rgb(25, 131, 158);
   cursor: pointer;
 }

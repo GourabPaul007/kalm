@@ -1,5 +1,16 @@
+function $(value) {
+  switch (value[0]) {
+    case "#":
+      return document.getElementById(value.substring(1));
+    case ".":
+      return document.getElementsByClassName(value.substring(1))[0];
+    default:
+      return "bruh";
+  }
+}
+
 // When you click the linksModalOpenBtn, open the Links Modal
-document.getElementById("linksModalOpenBtn").onclick = function () {
+$("#linksModalOpenBtn").onclick = function () {
   new LinksModalNavigation().openLinksModal();
 };
 
@@ -9,47 +20,43 @@ document.body.onclick = function (e) {
 };
 
 // Get user to add link modal on click of addLinkIconButton
-document.getElementById("addLinkIconButton").onclick = function () {
+$("#addLinkIconButton").onclick = function () {
   new LinksModalFunctionality().onPressAddLink();
 };
 
 // Go back to links modal on cancelLinkCreationButton click
-document.getElementById("cancelLinkCreationButton").onclick = function () {
+$("#cancelLinkCreationButton").onclick = function () {
   new LinksModalFunctionality().onPressGoBack();
 };
 
 // When you click the save link button, save the link and go back to links modal
-document.getElementById("saveLinkButton").onclick = function () {
+$("#saveLinkButton").onclick = function () {
   new LinksModalFunctionality().addLink();
 };
 
-document.getElementById("linksModal").onclick = function (e) {
-  let moreOptionsDialog = document.getElementById("moreOptionsDialog");
+$("#linksModal").onclick = function (e) {
+  let linksModalFunctionality = new LinksModalFunctionality();
+  let element;
   if (e.target.classList.contains("linkMoreOptions")) {
-    let el = e.target.parentElement;
-    moreOptionsDialog.classList.toggle("show");
-    moreOptionsDialog.style.top = `${e.clientY - 20}px`;
-    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
-    // moreOptionsDialog.style.left = e.target.posX;
-    document.getElementById("deleteLinkButton").onclick = () => {
-      new LinksModalFunctionality().onPressDelete(el);
-    };
-    // new LinksModalFunctionality().onPressDelete(el);
+    element = e.target.parentElement;
   } else if (e.target.classList.contains("moreOptionsIcon")) {
-    let el = e.target.parentElement.parentElement;
-    moreOptionsDialog.classList.toggle("show");
-    moreOptionsDialog.style.top = `${e.clientY - 20}px`;
-    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
-    document.getElementById("deleteLinkButton").onclick = () => {
-      new LinksModalFunctionality().onPressDelete(el);
-    };
-    // new LinksModalFunctionality().onPressDelete(el);
+    element = e.target.parentElement.parentElement;
+  } else {
+    return; //return if not clicked on the more options button
   }
+  linksModalFunctionality.onClickMoreOptionsBtn(e);
+  $("#editLinkButton").onclick = () => {
+    console.log(element);
+    linksModalFunctionality.onPressEditButton(element);
+  };
+  $("#deleteLinkButton").onclick = () => {
+    linksModalFunctionality.onPressDeleteButton(element);
+  };
 };
 
 class LinksModalNavigation {
   openLinksModal() {
-    let linksModal = document.getElementById("linksModal");
+    let linksModal = $("#linksModal");
     if (linksModal.style.display === "flex") {
       linksModal.style.display = "none";
     } else {
@@ -58,9 +65,10 @@ class LinksModalNavigation {
   }
 
   closeLinksModal(e) {
-    let linksModal = document.getElementById("linksModal");
+    let linksModal = $("#linksModal");
     if (!linksModal.contains(e.target) && e.target.id !== "linksModalOpenBtn") {
       linksModal.style.display = "none";
+      $("#moreOptionsDialog").classList.remove("show");
     }
   }
 
@@ -79,21 +87,66 @@ class LinksModalNavigation {
 
 class LinksModalFunctionality {
   onPressAddLink() {
-    document.getElementById("linksDiv").style.display = "none";
-    document.getElementById("addLinkModal").style.display = "flex";
-    document.getElementById("linksModal").classList.add("next");
+    $("#linksDiv").style.display = "none";
+    $("#addLinkModal").style.display = "flex";
+    $("#moreOptionsDialog").classList.remove("show");
+    $("#linksModal").classList.add("next");
+    $("#saveLinkButton").style.display = "block";
+    $("#updateLinkButton").style.display = "none";
   }
   onPressGoBack() {
-    document.getElementById("linksDiv").style.display = "flex";
-    document.getElementById("addLinkModal").style.display = "none";
-    document.getElementById("linksModal").classList.remove("next");
+    $("#linksDiv").style.display = "flex";
+    $("#addLinkModal").style.display = "none";
+    $("#linksModal").classList.remove("next");
   }
+  onPressEditButton(el) {
+    chrome.storage.sync.get({ links: [] }, function (result) {
+      let links = result.links;
+      for (let i = 0; i < links.length; i++) {
+        if (links[i].elementId === el.id) {
+          $("#linksDiv").style.display = "none";
+          $("#addLinkModal").style.display = "flex";
+          $("#moreOptionsDialog").classList.remove("show");
+          $("#linksModal").classList.add("next");
+          $("#saveLinkButton").style.display = "none";
+          $("#updateLinkButton").style.display = "block";
+          $("#linkTitleInput").value = links[i].linkTitle;
+          $("#linkLinksInput").value = links[i].linkLinks[0];
+          $("#updateLinkButton").onclick = () => {
+            console.log($("#linkTitleInput").value);
+            links[i].linkTitle = $("#linkTitleInput").value;
+            links[i].linkLinks[0] = $("#linkLinksInput").value;
+            chrome.storage.sync.set({ links: links }, function () {
+              initLinks();
+            });
+            new LinksModalFunctionality().onPressGoBack();
+          };
+        }
+      }
+      $(".bruh");
+    });
+  }
+  onPressDeleteButton(el) {
+    chrome.storage.sync.get({ links: [] }, function (result) {
+      let links = result.links;
+      for (let i = 0; i < links.length; i++) {
+        if (links[i].elementId === el.id) {
+          links.splice(links.indexOf(links[i]), 1);
+        }
+      }
+      $("#moreOptionsDialog").classList.remove("show");
+      chrome.storage.sync.set({ links: links }, function () {
+        initLinks();
+      });
+    });
+  }
+
   /**
    *  Update Links on addLink button click in linksModal
    * */
   addLink() {
-    let linkTitleInput = document.getElementById("linkTitleInput").value;
-    let linkLinksInput = document.getElementById("linkLinksInput").value;
+    let linkTitleInput = $("#linkTitleInput").value;
+    let linkLinksInput = $("#linkLinksInput").value;
     chrome.storage.sync.get({ links: [] }, function (result) {
       let links = result.links;
       if (linkTitleInput == "" && linkLinksInput == [""]) return;
@@ -125,18 +178,13 @@ class LinksModalFunctionality {
       return true;
     }
   }
-  onPressDelete(el) {
-    chrome.storage.sync.get({ links: [] }, function (result) {
-      let links = result.links;
-      for (let i = 0; i < links.length; i++) {
-        if (links[i].elementId === el.id) {
-          // links.remove(links[i]);
-          links.splice(links.indexOf(links[i]), 1);
-        }
-      }
-      chrome.storage.sync.set({ links: links }, function () {
-        initLinks();
-      });
-    });
+
+  onClickMoreOptionsBtn(e) {
+    let moreOptionsDialog = $("#moreOptionsDialog");
+    moreOptionsDialog.classList.toggle("show");
+    moreOptionsDialog.style.top = `${e.clientY - 20}px`;
+    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
   }
+
+  editLink() {}
 }
