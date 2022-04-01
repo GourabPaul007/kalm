@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/homePage.css" />
     <link rel="stylesheet" href="../css/settingsModal.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/linksModal.css" />
     <link rel="stylesheet" href="../css/eachLink.css" />
     <link rel="stylesheet" href="../css/newLinkModal.css" />
@@ -51,7 +52,7 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
-    <!-- SideBar -->
+    <!-- Links Modal -->
     <div id="linksModal">
       <!-- LinksDiv with addLink button -->
       <div id="linksDiv">
@@ -132,6 +133,25 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
+    <!-- SideBar -->
+    <div class="sidebar">
+      <a href="#">
+        <i class="bi bi-alarm"></i>
+      </a>
+      <a href="#">
+        <i class="bi bi-alarm"></i>
+      </a>
+      <a href="#">
+        <i class="bi bi-alarm"></i>
+      </a>
+      <a href="#">
+        <i class="bi bi-alarm"></i>
+      </a>
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
     <!-- Settings Button -->
     <i class="bi bi-gear" id="settingsBtn"></i>
     <!-- The Modal -->
@@ -172,11 +192,15 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!-- Scripts -->
+
+    <!-- Helpers -->
+    <script src="../helpers/logger.js"></script>
     <script src="../helpers/domManipulation.js"></script>
+    <script src="../helpers/links.js"></script>
+
     <script src="../repository/settingsRepository.js"></script>
     <script src="../../data.js"></script>
     <script src="../../background.js"></script>
-    <script src="../services/logger.js"></script>
     <script src="../services/settingsModal.js"></script>
     <script src="../services/linksModal.js"></script>
     <script src="../services/homePage.js"></script>

@@ -151,22 +151,6 @@ class LinksModalFunctionality {
       new LinksModalFunctionality().onPressGoBack();
     });
   }
-  /**
-   * @param {String} linkTitleInput
-   * @param {String} linkLinksInput
-   * returns true or false after sanitizing inputs from addLinks modal
-   * returns true ONLY if the parameters are sanitized
-   */
-  sanitizeInputs(linkTitleInput, linkLinksInput) {
-    if (
-      (linkTitleInput == null || linkTitleInput == "") &&
-      (linkLinksInput == [null] || linkLinksInput == [""])
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   onClickMoreOptionsBtn(e) {
     let moreOptionsDialog = $("#moreOptionsDialog");

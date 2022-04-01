@@ -10,7 +10,7 @@ class SettingsRepository {
   setTimeFormatToLocalDatabase(value) {
     localStorage.setItem("timeFormat", value);
     globalTimeFormat = value;
-    console.log(`set timeFormat to localStorage: ${value}`);
+    log(`set timeFormat to localStorage: ${value}`);
   }
 
   getFont() {}

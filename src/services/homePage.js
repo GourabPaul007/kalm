@@ -69,7 +69,9 @@ function initLinks() {
           <a href='${element.linkLinks[0]}'>
             <img
               class='favicon'
-              src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks}&size=16'
+              src='https://icons.duckduckgo.com/ip2/${removeProtocolNameFromLink(
+                element.linkLinks[0]
+              )}.ico'
               alt=''
             />
             <span>&nbsp;${element.linkTitle}</span>
@@ -84,3 +86,4 @@ function initLinks() {
   });
 }
 initLinks();
+// src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks[0]}&size=16'
