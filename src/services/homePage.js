@@ -2,6 +2,27 @@
 //   alert("bruh");
 // });
 
+function initPage() {
+  let showSidebar = new SettingsRepository().getShowSidebar();
+  if (showSidebar == 1) {
+    new ShowOrHide().showSidebar();
+    $("#showSidebar").checked = true;
+  } else {
+    new ShowOrHide().hideSidebar();
+    $("#showSidebar").checked = false;
+  }
+
+  // set all tab content to display none & tabs to not have bg color in settings
+  let tabs = $(".tabs")[0].children;
+  for (let i = 0; i < tabs.length; i++) {
+    $(`#${tabs[i].id}TabContent`).style.display = "none";
+  }
+  // set general tab content to show in settings
+  $(`#general`).style.backgroundColor = "#434343";
+  $(`#generalTabContent`).style.display = "block";
+}
+initPage();
+
 function initTimeFormat() {
   window.onload = function () {
     let tf = new SettingsRepository().getTimeFormatFromLocalDatabase();
@@ -87,3 +108,21 @@ function initLinks() {
 }
 initLinks();
 // src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks[0]}&size=16'
+
+// chrome.tabs.getCurrent((tab) => {
+//   console.log("currentTab", currentTab);
+//   if (tab.id !== currentTab.id) {
+//     console.log("bruh");
+//     chrome.windows.remove(createdWindow.id, () => {});
+//   }
+// });
+
+// if ((await chrome.tabs.getCurrent()) != currentTab) {
+//   chrome.windows.remove(createdWindow.id, () => {});
+// }
+
+// chrome.windows.get(
+//   windowId: number,
+//   queryOptions?: QueryOptions,
+//   callback?: function,
+// )

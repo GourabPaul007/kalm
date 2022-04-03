@@ -3,14 +3,14 @@
   position: fixed; /* Stay in place */
   flex-direction: column;
   z-index: 1; /* Sit on top */
-  left: 48px;
+  left: 64px;
   bottom: 48px;
-  width: 400px;
+  width: 600px;
   overflow-y: none;
   color: #b2b2b2;
   margin: 12px;
   /* position: relative; */
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   margin: auto;
   padding: 12px 0px 12px 0px;
   border-radius: 12px;
@@ -43,6 +43,12 @@
   margin: 2px 16px 16px 16px;
 }
 
+.modalContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
 /* The Close Button */
 .close {
   color: #b2b2b2;
@@ -62,7 +68,7 @@
   color: white;
 }
 
-.eachModalContent {
+.tabSubContents {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -70,4 +76,35 @@
   margin: 8px 0px;
   font-size: 16px;
   height: 24px;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+.tabs button:hover {
+  cursor: pointer;
+  background-color: #434343;
+}
+/* .tabs :first-child {
+  background-color: #434343;
+} */
+
+.tabLinks {
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  color: #b2b2b2;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-right: 16px;
 }

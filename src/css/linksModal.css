@@ -6,9 +6,9 @@
   width: 240px;
   position: fixed;
   z-index: 1;
-  left: 48px;
+  left: 64px;
   top: 0px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   /* overflow-x: hidden; */
   padding: 16px;
   /* transform: translateX(100%);
@@ -75,12 +75,22 @@
   cursor: pointer;
 }
 
-#sidebar.showPage2 #page1 {
+/* #addLinkIconButton {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-decoration: none;
+  font-size: 24px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+} */
+
+/* #sidebar.showPage2 #page1 {
   left: -100%;
 }
 #sidebar.showPage2 #page2 {
   left: 0%;
-}
+} */
 
 #linksDiv {
   margin: 0;

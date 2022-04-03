@@ -6,6 +6,13 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["./src/content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "permissions": ["storage", "activeTab", "scripting", "alarms"],
   "action": {
     "default_popup": "./idk/popup.html",

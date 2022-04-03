@@ -24,6 +24,7 @@ p {
 }
 
 .bg {
+  display: flex;
   /* The image used */
   /* background: var(--todaysImage); */
   /* Full height */
@@ -68,8 +69,12 @@ h3 {
 
 .top-left {
   position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 48px;
   top: 12px;
-  left: 12px;
+  left: 8px;
 }
 
 .top-right {
@@ -140,10 +145,17 @@ h3 {
   text-align: right;
 }
 
-#settingsBtn {
+.bottom-left {
   position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   bottom: 16px;
-  left: 12px;
+  left: 8px;
+  width: 48px;
+}
+
+#settingsBtn {
   font-size: 24px;
   color: white;
   transition: all 0.2s linear;
@@ -153,6 +165,6 @@ h3 {
   cursor: pointer;
 }
 #settingsBtn.rotate {
-  transform: rotate(90deg) scale(1.1);
+  transform: rotate(-90deg) scale(1.1);
   /* scale: 0.2; */
 }

@@ -1,6 +1,5 @@
 // Get the settingsModal
 // var settingsModal = $("#settingsModal");
-
 // When the user clicks the button, open the settingsModal
 $("#settingsBtn").onclick = function () {
   let settingsModal = $("#settingsModal");
@@ -54,11 +53,38 @@ $("#fontSelect").addEventListener("change", async (e) => {
 });
 
 // Change Time Format
-document
-  .getElementById("timeFormatSelect")
-  .addEventListener("change", async (e) => {
-    new SettingsRepository().setTimeFormatToLocalDatabase(e.target.value);
-  });
+$("#timeFormatSelect").addEventListener("change", async (e) => {
+  let settingsRepository = new SettingsRepository();
+  settingsRepository.setTimeFormatToLocalDatabase(e.target.value);
+});
+
+$("#showSidebar").addEventListener("change", (e) => {
+  let settingsRepository = new SettingsRepository();
+  if (e.target.checked) {
+    settingsRepository.setShowSidebar(1);
+    new ShowOrHide().showSidebar();
+  } else {
+    settingsRepository.setShowSidebar(0);
+    new ShowOrHide().hideSidebar();
+  }
+});
+
+$(".tabs")[0].onclick = (e) => {
+  // set all tab content to display none & tabs to not have bg color
+  let tabs = $(".tabs")[0].children;
+  for (let i = 0; i < tabs.length; i++) {
+    $(`#${tabs[i].id}TabContent`).style.display = "none";
+    $(`#${tabs[i].id}`).style.backgroundColor = "transparent";
+  }
+  // set clicked tab content to show & set selected tab to have bg color
+  $(`#${e.target.id}`).style.backgroundColor = "#434343";
+  $(`#${e.target.id}TabContent`).style.display = "block";
+};
+
+// $("#sidebarTabContent").onclick = (e) => {
+//   $("sidebarTabContent").style.display = "none";
+//   $("generalTabContent").style.display = "none";
+// };
 
 // $("#openFile").onclick = async function () {
 //   // [fileHandle] = await window.showOpenFilePicker();

@@ -16,4 +16,12 @@ class SettingsRepository {
   getFont() {}
 
   setFont() {}
+
+  setShowSidebar(value) {
+    log("showSidebar" + value);
+    localStorage.setItem("showSidebar", value);
+  }
+  getShowSidebar() {
+    return localStorage.getItem("showSidebar");
+  }
 }
