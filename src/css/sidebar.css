@@ -1,39 +1,61 @@
 .sidebar {
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: fit-content;
-  width: 48px;
   position: fixed;
   z-index: 1;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 4px;
+  /* transform: translateY(-50%); */
   background-color: rgba(0, 0, 0, 0.9);
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.2s;
-  padding: 6px 0px;
+
   border-radius: 8px;
   animation-duration: 0.3s;
-  animation-name: slideRight;
+  /* animation-name: slideRight; */
   animation-fill-mode: forwards;
 }
-@keyframes slideRight {
-  0% {
-    left: 0px;
-  }
-  100% {
-    left: 8px;
-  }
-}
+
 /* .sidebar.show {
   display: flex;
 } */
+.sidebar.placeLeft {
+  flex-direction: column;
+  height: fit-content;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-name: sideBarSlideRight;
+}
+.sidebar.placeRight {
+  flex-direction: column;
+  height: fit-content;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  animation-name: sideBarSlideLeft;
+}
+.sidebar.placeTop {
+  flex-direction: row;
+  width: fit-content;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: sideBarSlideDown;
+}
+.sidebar.placeBottom {
+  flex-direction: row;
+  width: fit-content;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  animation-name: sideBarSlideUp;
+}
 
 .sidebarLinks {
-  margin-top: 2px;
-  margin-bottom: 2px;
+  /* margin-top: 2px;
+  margin-bottom: 2px; */
+  margin: 2px;
   text-decoration: none;
   font-size: 20px;
   color: #c2c2c2;
@@ -61,4 +83,41 @@
 #addLinkIconButton:hover {
   color: #f1f1f1;
   cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* Animations */
+@keyframes sideBarSlideRight {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 8px;
+  }
+}
+@keyframes sideBarSlideLeft {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 8px;
+  }
+}
+@keyframes sideBarSlideDown {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 8px;
+  }
+}
+@keyframes sideBarSlideUp {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: 8px;
+  }
 }

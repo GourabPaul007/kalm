@@ -21,7 +21,7 @@ function createData(url) {
     top: window.outerHeight - window.innerHeight,
     left: 56,
     width: 1000,
-    height: window.innerHeight,
+    height: window.innerHeight - 56,
     url: url,
   };
 }
@@ -30,9 +30,7 @@ $("#openYoutube").onclick = async (e) => {
   e.preventDefault();
   removePreviousWindow();
   currentTab = await chrome.tabs.getCurrent();
-  createdWindow = await chrome.windows.create(
-    createData("https://youtube.com")
-  );
+  createdWindow = await chrome.windows.create(createData("https://youtube.com"));
   // createdWindow.pinned = true;
 };
 
@@ -40,16 +38,12 @@ $("#openWhatsapp").onclick = async (e) => {
   e.preventDefault();
   removePreviousWindow();
   currentTab = await chrome.tabs.getCurrent();
-  createdWindow = await chrome.windows.create(
-    createData("https://web.whatsapp.com")
-  );
+  createdWindow = await chrome.windows.create(createData("https://web.whatsapp.com"));
 };
 
 $("#openDiscord").onclick = async (e) => {
   e.preventDefault();
   removePreviousWindow();
   currentTab = await chrome.tabs.getCurrent();
-  createdWindow = await chrome.windows.create(
-    createData("https://discord.com/app")
-  );
+  createdWindow = await chrome.windows.create(createData("https://discord.com/app"));
 };

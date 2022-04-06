@@ -37,10 +37,7 @@ $(".close")[0].onclick = function () {
 
 // change font
 $("#fontSelect").addEventListener("change", async (e) => {
-  var font = new FontFace(
-    e.target.value,
-    `url(../../assets/fonts/${e.target.value}.ttf)`
-  );
+  var font = new FontFace(e.target.value, `url(../../assets/fonts/${e.target.value}.ttf)`);
   await font
     .load()
     .then(function (loaded_face) {
@@ -66,6 +63,36 @@ $("#showSidebar").addEventListener("change", (e) => {
   } else {
     settingsRepository.setShowSidebar(0);
     new ShowOrHide().hideSidebar();
+  }
+});
+
+$("#selectSidebarPosition").addEventListener("change", (e) => {
+  let sidebarRepository = new SidebarRepository();
+  switch (e.target.value) {
+    case "left":
+      $(".sidebar")[0].classList.remove("placeTop", "placeBottom", "placeRight");
+      $(".sidebar")[0].classList.add("placeLeft");
+      sidebarRepository.setSidebarPosition("left");
+      break;
+    case "right":
+      $(".sidebar")[0].classList.remove("placeTop", "placeLeft", "placeBottom");
+      $(".sidebar")[0].classList.add("placeRight");
+      sidebarRepository.setSidebarPosition("right");
+      break;
+    case "top":
+      $(".sidebar")[0].classList.remove("placeBottom", "placeLeft", "placeRight");
+      $(".sidebar")[0].classList.add("placeTop");
+      sidebarRepository.setSidebarPosition("top");
+      break;
+    case "bottom":
+      $(".sidebar")[0].classList.remove("placeTop", "placeLeft", "placeRight");
+      $(".sidebar")[0].classList.add("placeBottom");
+      sidebarRepository.setSidebarPosition("bottom");
+      break;
+    default:
+      $(".sidebar")[0].classList.remove("placeTop", "placeBottom", "placeRight");
+      $(".sidebar")[0].classList.add("placeLeft");
+      break;
   }
 });
 

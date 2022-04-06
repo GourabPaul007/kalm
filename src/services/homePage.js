@@ -3,8 +3,8 @@
 // });
 
 function initPage() {
-  let showSidebar = new SettingsRepository().getShowSidebar();
-  if (showSidebar == 1) {
+  let sidebarRepository = new SidebarRepository();
+  if (sidebarRepository.getShowSidebar() == 1) {
     new ShowOrHide().showSidebar();
     $("#showSidebar").checked = true;
   } else {
@@ -20,6 +20,12 @@ function initPage() {
   // set general tab content to show in settings
   $(`#general`).style.backgroundColor = "#434343";
   $(`#generalTabContent`).style.display = "block";
+
+  // set sidebar to left
+  let sidebarPosition = sidebarRepository.getSidebarPosition();
+  let className = sidebarPosition[0].toUpperCase() + sidebarPosition.substring(1);
+  $("#selectSidebarPosition").value = sidebarPosition;
+  $(".sidebar")[0].classList.add(`place${className}`);
 }
 initPage();
 
@@ -90,9 +96,7 @@ function initLinks() {
           <a href='${element.linkLinks[0]}'>
             <img
               class='favicon'
-              src='https://icons.duckduckgo.com/ip2/${removeProtocolNameFromLink(
-                element.linkLinks[0]
-              )}.ico'
+              src='https://icons.duckduckgo.com/ip2/${removeProtocolNameFromLink(element.linkLinks[0])}.ico'
               alt=''
             />
             <span>&nbsp;${element.linkTitle}</span>

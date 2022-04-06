@@ -16,10 +16,7 @@
     <!-- <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins&display=swap" rel="stylesheet"> -->
 
     <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>new tab</title>
   </head>
   <body>
@@ -148,30 +145,6 @@
       <a href="" class="sidebarLinks">
         <i class="bi bi-alarm"></i>
       </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
-      <a href="" class="sidebarLinks">
-        <i class="bi bi-alarm"></i>
-      </a>
     </div>
 
     <!---------------------------------------------------------------------------------------------------------------->
@@ -212,13 +185,22 @@
               </select>
             </div>
           </section>
-          <section id="themeTabContent">
+          <section id="sidebarTabContent">
             <div class="tabSubContents">
               <span>Show SideBar:&nbsp;&nbsp;&nbsp;</span>
               <input type="checkbox" id="showSidebar" />
             </div>
+            <div class="tabSubContents">
+              <span>Time format:&nbsp;&nbsp;&nbsp;</span>
+              <select name="selectSidebarPosition" id="selectSidebarPosition">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+              </select>
+            </div>
           </section>
-          <section id="sidebarTabContent"></section>
+          <section id="themeTabContent"></section>
           <section id="clockTabContent"></section>
           <!-- <div class="tabSubContents"></div>
           <div class="tabSubContents"></div>
@@ -242,6 +224,7 @@
 
     <!-- Repositories -->
     <script src="../repository/settingsRepository.js"></script>
+    <script src="../repository/sidebarRepository.js"></script>
 
     <!-- Services -->
     <script src="../../data.js"></script>
