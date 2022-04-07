@@ -1,0 +1,75 @@
+.circle {
+  border: 2px solid white;
+  /* background-color: #ffffff; */
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+}
+.analogClock {
+  border: 2px solid white;
+  /* background-color: #ffffff; */
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  position: relative;
+}
+.analogClock::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  z-index: 11;
+  width: 5px;
+  height: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.analogClock .hand {
+  --rotation: 0;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  z-index: 10;
+}
+.analogClock .hand.second {
+  height: 47%;
+  width: 2px;
+  background-color: white;
+  transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+  transition: transform 1s linear;
+}
+.analogClock .hand.minute {
+  height: 30%;
+  width: 3px;
+  background-color: white;
+  transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+  transition: transform 1s linear;
+}
+.analogClock .hand.hour {
+  height: 25%;
+  width: 3px;
+  background-color: whitesmoke;
+  transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+  transition: transform 1s linear;
+}
+
+/*
+  When the hand goes to 59s mark, it rotates all the way back
+  So, to stop that we need to pasue our linear transition
+*/
+.no-transition {
+  transition: none !important;
+  transition: transform;
+}
+
+/* @keyframes spinSeccond {
+  from {
+    transform: translateX(-50%) rotate(0);
+  }
+  to {
+    transform: translateX(-50%) rotate(360);
+  }
+} */

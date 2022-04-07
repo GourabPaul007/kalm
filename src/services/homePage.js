@@ -43,13 +43,13 @@ function initTimeFormat() {
 initTimeFormat();
 
 // clock
-document.getElementById("time").innerText = getTime();
+// document.getElementById("time").innerText = getTime();
 // Greetings
 document.getElementById("greetings").innerText = greetings();
 
 // get the time and show it on each second
 setInterval(() => {
-  document.getElementById("time").innerText = getTime();
+  // document.getElementById("time").innerText = getTime();
 }, 1000);
 
 document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {

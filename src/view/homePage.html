@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/homePage.css" />
+    <link rel="stylesheet" href="../css/analogClock.css" />
     <link rel="stylesheet" href="../css/settingsModal.css" />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/linksModal.css" />
@@ -35,7 +36,14 @@
 
       <div class="text-center centered">
         <div id="time-div">
-          <h1 id="time"></h1>
+          <!-- <h1 id="time"></h1> -->
+
+          <div class="analogClock">
+            <div class="hand hour" id="dataHourHand"></div>
+            <div class="hand minute" id="dataMinuteHand"></div>
+            <div class="hand second" id="dataSecondHand"></div>
+          </div>
+          <!-- <div class="circle"></div> -->
           <!-- <h2 id="ampm">AM</h2> -->
         </div>
         <!-- Greetings -->
@@ -231,6 +239,7 @@
     <script src="../../background.js"></script>
     <script src="../services/showOrHide.js"></script>
     <script src="../services/sidebar.js"></script>
+    <script src="../services/clockService.js"></script>
     <script src="../services/settingsService.js"></script>
     <script src="../services/linksModal.js"></script>
     <script src="../services/homePage.js"></script>
