@@ -37,12 +37,12 @@
 .analogClock .hand.second {
   height: 47%;
   width: 2px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 5);
   transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
   transition: transform 1s linear;
 }
 .analogClock .hand.minute {
-  height: 30%;
+  height: 37%;
   width: 3px;
   background-color: white;
   transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
@@ -60,16 +60,8 @@
   When the hand goes to 59s mark, it rotates all the way back
   So, to stop that we need to pasue our linear transition
 */
-.no-transition {
-  transition: none !important;
-  transition: transform;
-}
-
-/* @keyframes spinSeccond {
-  from {
-    transform: translateX(-50%) rotate(0);
-  }
-  to {
-    transform: translateX(-50%) rotate(360);
-  }
+/* .no-transition {
+  transition: transform 900ms linear, none !important;
+  transition-delay: 0s, 900ms;
+  transform: rotate(359deg);
 } */
