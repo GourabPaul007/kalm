@@ -1,0 +1,134 @@
+#todoListModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  flex-direction: column;
+  z-index: 1; /* Sit on top */
+  right: 64px;
+  bottom: 48px;
+  width: 400px;
+  overflow-y: none;
+  color: #b2b2b2;
+  margin: 12px;
+  /* position: relative; */
+  background-color: rgba(0, 0, 0, 0.9);
+  margin: auto;
+  padding: 12px 0px 12px 0px;
+  border-radius: 12px;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  animation-direction: alternate;
+}
+@keyframes animatetop {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 48px;
+    opacity: 1;
+  }
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0px 8px 0px 24px;
+  font-size: 16px;
+  transition: 0.2s;
+  user-select: none;
+  list-style-type: none;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  color: white;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+/* ul li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+} */
+
+/* Style the close button */
+.close {
+  padding: 0px 6px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  font-size: 24px;
+  background-color: transparent;
+  padding: 8px 12px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.header h4 {
+  margin: 0;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
