@@ -56,12 +56,12 @@ $("#timeFormatSelect").addEventListener("change", async (e) => {
 });
 
 $("#showSidebar").addEventListener("change", (e) => {
-  let settingsRepository = new SettingsRepository();
+  let sidebarRepository = new SidebarRepository();
   if (e.target.checked) {
-    settingsRepository.setShowSidebar(1);
+    sidebarRepository.setShowSidebar(1);
     new ShowOrHide().showSidebar();
   } else {
-    settingsRepository.setShowSidebar(0);
+    sidebarRepository.setShowSidebar(0);
     new ShowOrHide().hideSidebar();
   }
 });
