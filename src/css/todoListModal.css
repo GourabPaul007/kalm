@@ -1,3 +1,14 @@
+#openTodoListButton {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 17px;
+  border: none;
+}
+#openTodoListButton:hover {
+  cursor: pointer;
+  color: white;
+}
+
 #todoListModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -5,11 +16,10 @@
   z-index: 1; /* Sit on top */
   right: 64px;
   bottom: 48px;
-  width: 400px;
+  width: 300px;
   overflow-y: none;
   color: #b2b2b2;
   margin: 12px;
-  /* position: relative; */
   background-color: rgba(0, 0, 0, 0.9);
   margin: auto;
   padding: 12px 0px 12px 0px;
@@ -27,6 +37,23 @@
     bottom: 48px;
     opacity: 1;
   }
+}
+
+/* Style the header */
+.header {
+  font-size: 20px;
+  background-color: transparent;
+  padding: 8px 20px;
+  color: white;
+}
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.header h4 {
+  margin: 0;
 }
 
 /* Remove margins and padding from the list */
@@ -60,75 +87,49 @@ ul li.checked {
   text-decoration: line-through;
 }
 
-/* Add a "checked" mark when clicked on */
-/* ul li.checked::before {
-  content: "";
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-} */
-
 /* Style the close button */
-.close {
+.closeTodoModal {
   padding: 0px 6px;
-}
-
-.close:hover {
-  background-color: #f44336;
-  color: white;
-}
-
-/* Style the header */
-.header {
   font-size: 24px;
-  background-color: transparent;
-  padding: 8px 12px;
-  color: white;
-  text-align: center;
 }
 
-/* Clear floats after the header */
-.header:after {
-  content: "";
-  display: table;
-  clear: both;
+.closeTodoModal:hover {
+  /* background-color: #f44336; */
+  color: #c0352b;
 }
 
-.header h4 {
-  margin: 0;
+#inputArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0px;
 }
 
 /* Style the input */
-input {
-  margin: 0;
+#myInput {
+  margin: 0px 0px 0px 24px;
   border: none;
-  border-radius: 0;
+  outline: none;
   width: 75%;
-  padding: 10px;
-  float: left;
   font-size: 16px;
+  background-color: transparent;
+  color: white;
 }
 
 /* Style the "Add" button */
 .addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
+  padding: 8px;
+  margin: 0px 8px 0px 0px;
+  width: 60px;
+  background: #28a128;
+  border-radius: 24px;
+  color: white;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
 }
 
 .addBtn:hover {
-  background-color: #bbb;
+  background-color: #1e741e;
 }

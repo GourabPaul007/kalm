@@ -227,13 +227,13 @@
     <!-- Todo List Button -->
     <div class="bottom-right">
       <!-- <i class="bi bi-gear" id="settingsBtn"></i> -->
-      <button id="openTodoList">Todo</button>
+      <button id="openTodoListButton">Todo</button>
     </div>
     <!-- The Modal -->
     <div id="todoListModal" class="modal">
       <!-- Modal content -->
       <div id="myDIV" class="header">
-        <h4>My To Do List</h4>
+        <h4>Todo List</h4>
       </div>
 
       <ul id="myUL">
@@ -244,8 +244,10 @@
         <li>Read a book</li>
         <li>Organize office</li>
       </ul>
-      <input type="text" id="myInput" placeholder="Title..." />
-      <span id="addNewElement" class="addBtn">Add</span>
+      <div id="inputArea">
+        <input type="text" id="myInput" placeholder="Add Todo..." />
+        <span id="addNewElement" class="addBtn">Add</span>
+      </div>
     </div>
 
     <!---------------------------------------------------------------------------------------------------------------->

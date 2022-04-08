@@ -3,6 +3,11 @@
 // });
 
 function initPage() {
+  // set background image on new tab
+  document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
+    return images[Math.floor(Math.random() * images.length)];
+  })();
+
   let sidebarRepository = new SidebarRepository();
   if (sidebarRepository.getShowSidebar() == 1) {
     new ShowOrHide().showSidebar();
@@ -51,10 +56,6 @@ document.getElementById("greetings").innerText = greetings();
 setInterval(() => {
   // document.getElementById("time").innerText = getTime();
 }, 1000);
-
-document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
-  return images[Math.floor(Math.random() * images.length)];
-})();
 
 function getTime() {
   let date = new Date();
