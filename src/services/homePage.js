@@ -3,11 +3,15 @@
 // });
 
 function initPage() {
-  // set background image on new tab
+  // set background image on start
   document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
     return images[Math.floor(Math.random() * images.length)];
   })();
 
+  // set clock type on settings
+  $("#selectClockType").value = new ClockRepository().getClockType();
+
+  // show or hide sidebar on start
   let sidebarRepository = new SidebarRepository();
   if (sidebarRepository.getShowSidebar() == 1) {
     new ShowOrHide().showSidebar();
@@ -34,40 +38,7 @@ function initPage() {
 }
 initPage();
 
-function initTimeFormat() {
-  window.onload = function () {
-    let tf = new SettingsRepository().getTimeFormatFromLocalDatabase();
-    if (tf === "12" || tf === "24") {
-      globalTimeFormat = tf;
-    }
-    log(`initialized globalTimeFormat: ${globalTimeFormat}`);
-    // set the value in settings modal select button
-    document.getElementById("timeFormatSelect").value = globalTimeFormat;
-  };
-}
-initTimeFormat();
-
-// clock
-// document.getElementById("time").innerText = getTime();
-// Greetings
 document.getElementById("greetings").innerText = greetings();
-
-// get the time and show it on each second
-setInterval(() => {
-  // document.getElementById("time").innerText = getTime();
-}, 1000);
-
-function getTime() {
-  let date = new Date();
-  let tf = globalTimeFormat;
-  let time = date.toLocaleTimeString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: tf === "12" ? true : false,
-  });
-  return time.substring(0, 8);
-}
 
 function greetings() {
   let currentHour = new Date().getHours();

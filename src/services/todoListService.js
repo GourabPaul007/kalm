@@ -14,16 +14,16 @@ var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
-  span.className = "closeTodoModal";
+  span.className = "deleteTodoModal";
   span.appendChild(txt);
   myNodelist[i].appendChild(span);
 }
 
 // Click on a close button to hide the current list item
-var closeTodoModal = document.getElementsByClassName("closeTodoModal");
+var deleteTodoModal = document.getElementsByClassName("deleteTodoModal");
 var i;
-for (i = 0; i < closeTodoModal.length; i++) {
-  closeTodoModal[i].onclick = function () {
+for (i = 0; i < deleteTodoModal.length; i++) {
+  deleteTodoModal[i].onclick = function () {
     var div = this.parentElement;
     div.style.display = "none";
   };
@@ -56,12 +56,12 @@ function newElement() {
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
-  span.className = "closeTodoModal";
+  span.className = "deleteTodoModal";
   span.appendChild(txt);
   li.appendChild(span);
 
-  for (i = 0; i < closeTodoModal.length; i++) {
-    closeTodoModal[i].onclick = function () {
+  for (i = 0; i < deleteTodoModal.length; i++) {
+    deleteTodoModal[i].onclick = function () {
       var div = this.parentElement;
       div.style.display = "none";
     };

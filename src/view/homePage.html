@@ -37,9 +37,9 @@
 
       <div class="text-center centered">
         <div id="time-div">
-          <!-- <h1 id="time"></h1> -->
+          <h1 id="digitalClock"></h1>
 
-          <div class="analogClock">
+          <div id="analogClock" class="analogClock">
             <div class="hand hour" id="hoursHand"></div>
             <div class="hand minute" id="minutesHand"></div>
             <div class="hand second" id="secondsHand"></div>
@@ -173,9 +173,9 @@
       <div class="modalContent">
         <div class="tabs">
           <button class="tabLinks" id="general">General</button>
+          <button class="tabLinks" id="clock">Clock</button>
           <button class="tabLinks" id="theme">Theme</button>
           <button class="tabLinks" id="sidebar">Sidebar</button>
-          <button class="tabLinks" id="clock">Clock</button>
         </div>
         <div class="tabContent">
           <section id="generalTabContent">
@@ -191,6 +191,15 @@
               <select name="timeFormatSelect" id="timeFormatSelect">
                 <option value="12">12</option>
                 <option value="24">24</option>
+              </select>
+            </div>
+          </section>
+          <section id="clockTabContent">
+            <div class="tabSubContents">
+              <span>Clock Type:&nbsp;&nbsp;&nbsp;</span>
+              <select id="selectClockType">
+                <option value="digital">digital</option>
+                <option value="analog">analog</option>
               </select>
             </div>
           </section>
@@ -210,13 +219,6 @@
             </div>
           </section>
           <section id="themeTabContent"></section>
-          <section id="clockTabContent"></section>
-          <!-- <div class="tabSubContents"></div>
-          <div class="tabSubContents"></div>
-          <div class="tabSubContents">
-            <span>Choose background directory:&nbsp;&nbsp;&nbsp;</span>
-            <button id="openFile">Select</button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -261,6 +263,7 @@
     <script src="../helpers/links.js"></script>
 
     <!-- Repositories -->
+    <script src="../repository/clockRepository.js"></script>
     <script src="../repository/settingsRepository.js"></script>
     <script src="../repository/sidebarRepository.js"></script>
 

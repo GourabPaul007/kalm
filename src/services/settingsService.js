@@ -51,10 +51,11 @@ $("#fontSelect").addEventListener("change", async (e) => {
 
 // Change Time Format
 $("#timeFormatSelect").addEventListener("change", async (e) => {
-  let settingsRepository = new SettingsRepository();
-  settingsRepository.setTimeFormatToLocalDatabase(e.target.value);
+  let clockRepository = new ClockRepository();
+  clockRepository.setTimeFormat(e.target.value);
 });
 
+// show or hide sidebar
 $("#showSidebar").addEventListener("change", (e) => {
   let sidebarRepository = new SidebarRepository();
   if (e.target.checked) {
@@ -66,6 +67,7 @@ $("#showSidebar").addEventListener("change", (e) => {
   }
 });
 
+// sidebar position change
 $("#selectSidebarPosition").addEventListener("change", (e) => {
   let sidebarRepository = new SidebarRepository();
   switch (e.target.value) {
@@ -107,6 +109,12 @@ $(".tabs")[0].onclick = (e) => {
   $(`#${e.target.id}`).style.backgroundColor = "#434343";
   $(`#${e.target.id}TabContent`).style.display = "block";
 };
+
+$("#selectClockType").addEventListener("change", (e) => {
+  let clockRepository = new ClockRepository();
+  clockRepository.setClockType(e.target.value);
+  initClockType(e.target.value); // clockService.js
+});
 
 // $("#sidebarTabContent").onclick = (e) => {
 //   $("sidebarTabContent").style.display = "none";

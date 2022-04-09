@@ -1,62 +1,73 @@
-setInterval(function () {
-  //get time since midnight in milliseconds
-  var now = new Date(),
-    then = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0),
-    mil = now.getTime() - then.getTime(); // difference in milliseconds
+globalTimeFormat = "12";
 
-  var h = mil / (1000 * 60 * 60);
-  var m = h * 60;
-  var s = m * 60;
+initTimeFormat();
+initClockType(new ClockRepository().getClockType());
+
+function initClockType(clockType) {
+  let allClocks = $("#time-div").children;
+  console.log(clockType);
+  switch (clockType) {
+    case "digital":
+      for (let i = 0; i < allClocks.length; i++) {
+        allClocks[i].style.display = "none";
+      }
+      $("#digitalClock").style.display = "block";
+      digitalClock();
+      setInterval(digitalClock, 1000);
+      break;
+
+    case "analog":
+      for (let i = 0; i < allClocks.length; i++) {
+        allClocks[i].style.display = "none";
+      }
+      $("#analogClock").style.display = "block";
+      analogClock();
+      setInterval(analogClock, 1000);
+      break;
+
+    default:
+      break;
+  }
+}
+
+function analogClock() {
+  let now = new Date();
+  let then = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  let differenceInMilliseconds = now.getTime() - then.getTime(); //get time since midnight in milliseconds/difference in milliseconds
+  let h = differenceInMilliseconds / (1000 * 60 * 60);
+  let m = h * 60;
+  let s = m * 60;
   // console.log(h + ":" + m + ":" + s);
+  let sdegree = s * 6; // 360/60 = 6
+  $("#secondsHand").style.transform = `rotate(${sdegree}deg)`;
+  let hdegree = h * 30; //  360/12 = 30
+  $("#hoursHand").style.transform = `rotate(${hdegree}deg)`;
+  let mdegree = m * 6;
+  $("#minutesHand").style.transform = `rotate(${mdegree}deg)`;
+}
 
-  var sdegree = s * 6;
-  var srotate = "rotate(" + sdegree + "deg)";
-  $("#secondsHand").style.transform = srotate;
+function digitalClock() {
+  let date = new Date();
+  let tf = globalTimeFormat;
+  let time = date.toLocaleTimeString(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: tf === "12" ? true : false,
+  });
+  $("#digitalClock").innerText = time.substring(0, 8);
+}
 
-  var hdegree = h * 30 + h / 2;
-  var hrotate = "rotate(" + hdegree + "deg)";
-  $("#hoursHand").style.transform = hrotate;
+function initTimeFormat() {
+  window.onload = function () {
+    let tf = new ClockRepository().getTimeFormat();
+    if (tf === "12" || tf === "24") {
+      globalTimeFormat = tf;
+    }
+    log(`initialized globalTimeFormat: ${globalTimeFormat}`);
+    // set the value in settings modal select button
+    document.getElementById("timeFormatSelect").value = globalTimeFormat;
+  };
+}
 
-  var mdegree = m * 6;
-  var mrotate = "rotate(" + mdegree + "deg)";
-  $("#minutesHand").style.transform = mrotate;
-}, 1000);
-
-// setInterval(setClock, 1000);
-// // setInterval(setSecondsHand, 60 * 1000);
-
-// $("#dataSecondHand").classList.add("animateSecond");
-// setInterval(() => {
-//   $("#dataSecondHand").classList.toggle("animateSecond");
-// }, 60 * 1000);
-
-// function setClock() {
-//   const currentDate = new Date();
-//   const secondsRatio = currentDate.getSeconds() / 60;
-//   const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
-//   const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
-//   setRotation($("#dataSecondHand"), secondsRatio);
-//   setRotation($("#dataMinuteHand"), minutesRatio);
-//   setRotation($("#dataHourHand"), hoursRatio);
-// }
-
-// // function setSecondsHand() {
-// //   secondHand.style.animation = "spinSecond 60s";
-// // }
-
-// function setRotation(element, rotationRatio) {
-//   if (element == $("#dataSecondHand")) {
-//     console.log(rotationRatio * 360, element.style.transform);
-//     // if (rotationRatio == 0) {
-//     //   element.classList.add("no-transition");
-//     //   // element.classList.remove("no-transition");
-//     // } else {
-//     //   element.classList.remove("no-transition");
-//     // }
-//   } else {
-//     element.style.setProperty("--rotation", rotationRatio * 360);
-//   }
-//   // element.style.transform = "rotate(" + rotationRatio * 360 + "deg)";
-// }
-
-// setClock();
+// let clockType = localStorage.getItem("clockType") ?? "digital";
