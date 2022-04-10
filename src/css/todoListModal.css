@@ -88,12 +88,12 @@ ul li.checked {
 }
 
 /* Style the delete button */
-.deleteTodoModal {
+.deleteTodoButton {
   margin: 2px;
   padding: 0px 5px;
   font-size: 20px;
 }
-.deleteTodoModal:hover {
+.deleteTodoButton:hover {
   background-color: #f44336;
   border-radius: 50%;
 }

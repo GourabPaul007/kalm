@@ -121,6 +121,7 @@ class LinksModalFunctionality {
       for (let i = 0; i < links.length; i++) {
         if (links[i].elementId === el.id) {
           links.splice(links.indexOf(links[i]), 1);
+          break;
         }
       }
       $("#moreOptionsDialog").classList.remove("show");
