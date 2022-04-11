@@ -5,7 +5,6 @@ initClockType(new ClockRepository().getClockType());
 
 function initClockType(clockType) {
   let allClocks = $("#time-div").children;
-  console.log(clockType);
   switch (clockType) {
     case "digital":
       for (let i = 0; i < allClocks.length; i++) {

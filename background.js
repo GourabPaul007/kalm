@@ -20,6 +20,9 @@ const sidebarWidth = "128px";
 // set the showSidebar to false on install
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ showSidebar: false });
+  // localStorage.setItem("clockType", digital);
+  // localStorage.setItem("timeFormat", 12);
+  // localStorage.setItem("showSidebar", true);
   // localStorage.setItem("timeFormat", "12");
   // chrome.storage.sync.set({ links: [] });
 });

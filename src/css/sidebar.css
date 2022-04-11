@@ -1,4 +1,4 @@
-.sidebar {
+#sidebar {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -20,7 +20,7 @@
 /* .sidebar.show {
   display: flex;
 } */
-.sidebar.placeLeft {
+#sidebar.placeLeft {
   flex-direction: column;
   height: fit-content;
   left: 0px;
@@ -28,7 +28,7 @@
   transform: translateY(-50%);
   animation-name: sideBarSlideRight;
 }
-.sidebar.placeRight {
+#sidebar.placeRight {
   flex-direction: column;
   height: fit-content;
   top: 50%;
@@ -36,7 +36,7 @@
   transform: translateY(-50%);
   animation-name: sideBarSlideLeft;
 }
-.sidebar.placeTop {
+#sidebar.placeTop {
   flex-direction: row;
   width: fit-content;
   top: 0px;
@@ -44,7 +44,7 @@
   transform: translateX(-50%);
   animation-name: sideBarSlideDown;
 }
-.sidebar.placeBottom {
+#sidebar.placeBottom {
   flex-direction: row;
   width: fit-content;
   left: 50%;

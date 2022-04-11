@@ -4,7 +4,7 @@ class ClockRepository {
   }
   getClockType() {
     let clockType = localStorage.getItem("clockType");
-    log("got clock type from localStorage" + clockType);
+    log("got clock type from localStorage: " + clockType);
     return clockType ?? "digital";
   }
 

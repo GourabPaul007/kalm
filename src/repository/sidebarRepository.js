@@ -4,7 +4,9 @@ class SidebarRepository {
     localStorage.setItem("showSidebar", value);
   }
   getShowSidebar() {
-    return localStorage.getItem("showSidebar");
+    let sidebarStatus = localStorage.getItem("showSidebar");
+    log(`got show sidebar status from localstorage: ${sidebarStatus}`);
+    return JSON.parse(sidebarStatus);
   }
 
   setSidebarPosition(value) {
@@ -12,7 +14,7 @@ class SidebarRepository {
     log("sidebar position set to: " + value);
   }
   getSidebarPosition() {
-    log(localStorage.getItem("sidebarPosition"));
+    log("sidebarPosition in local storage: " + localStorage.getItem("sidebarPosition"));
     return localStorage.getItem("sidebarPosition") ?? "left";
   }
 }

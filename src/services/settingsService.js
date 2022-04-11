@@ -59,11 +59,11 @@ $("#timeFormatSelect").addEventListener("change", async (e) => {
 $("#showSidebar").addEventListener("change", (e) => {
   let sidebarRepository = new SidebarRepository();
   if (e.target.checked) {
-    sidebarRepository.setShowSidebar(1);
-    new ShowOrHide().showSidebar();
+    sidebarRepository.setShowSidebar(JSON.stringify(true));
+    $("#sidebar").style.display = "flex";
   } else {
-    sidebarRepository.setShowSidebar(0);
-    new ShowOrHide().hideSidebar();
+    sidebarRepository.setShowSidebar(JSON.stringify(false));
+    $("#sidebar").style.display = "none";
   }
 });
 
@@ -72,28 +72,28 @@ $("#selectSidebarPosition").addEventListener("change", (e) => {
   let sidebarRepository = new SidebarRepository();
   switch (e.target.value) {
     case "left":
-      $(".sidebar")[0].classList.remove("placeTop", "placeBottom", "placeRight");
-      $(".sidebar")[0].classList.add("placeLeft");
+      $("#sidebar").classList.remove("placeTop", "placeBottom", "placeRight");
+      $("#sidebar").classList.add("placeLeft");
       sidebarRepository.setSidebarPosition("left");
       break;
     case "right":
-      $(".sidebar")[0].classList.remove("placeTop", "placeLeft", "placeBottom");
-      $(".sidebar")[0].classList.add("placeRight");
+      $("#sidebar").classList.remove("placeTop", "placeLeft", "placeBottom");
+      $("#sidebar").classList.add("placeRight");
       sidebarRepository.setSidebarPosition("right");
       break;
     case "top":
-      $(".sidebar")[0].classList.remove("placeBottom", "placeLeft", "placeRight");
-      $(".sidebar")[0].classList.add("placeTop");
+      $("#sidebar").classList.remove("placeBottom", "placeLeft", "placeRight");
+      $("#sidebar").classList.add("placeTop");
       sidebarRepository.setSidebarPosition("top");
       break;
     case "bottom":
-      $(".sidebar")[0].classList.remove("placeTop", "placeLeft", "placeRight");
-      $(".sidebar")[0].classList.add("placeBottom");
+      $("#sidebar").classList.remove("placeTop", "placeLeft", "placeRight");
+      $("#sidebar").classList.add("placeBottom");
       sidebarRepository.setSidebarPosition("bottom");
       break;
     default:
-      $(".sidebar")[0].classList.remove("placeTop", "placeBottom", "placeRight");
-      $(".sidebar")[0].classList.add("placeLeft");
+      $("#sidebar").classList.remove("placeTop", "placeBottom", "placeRight");
+      $("#sidebar").classList.add("placeLeft");
       break;
   }
 });
@@ -102,6 +102,7 @@ $(".tabs")[0].onclick = (e) => {
   // set all tab content to display none & tabs to not have bg color
   let tabs = $(".tabs")[0].children;
   for (let i = 0; i < tabs.length; i++) {
+    console.log(tabs[i].id);
     $(`#${tabs[i].id}TabContent`).style.display = "none";
     $(`#${tabs[i].id}`).style.backgroundColor = "transparent";
   }

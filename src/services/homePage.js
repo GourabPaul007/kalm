@@ -1,6 +1,7 @@
-// document.getElementById("apps").addEventListener("click", () => {
-//   alert("bruh");
-// });
+localStorage.setItem("clockType", "digital");
+localStorage.setItem("timeFormat", 12);
+localStorage.setItem("showSidebar", true);
+localStorage.setItem("sidebarPosition", "left");
 
 function initPage() {
   // set background image on start
@@ -13,11 +14,12 @@ function initPage() {
 
   // show or hide sidebar on start
   let sidebarRepository = new SidebarRepository();
-  if (sidebarRepository.getShowSidebar() == 1) {
-    new ShowOrHide().showSidebar();
+  if (sidebarRepository.getShowSidebar() === true) {
+    console.log("huh");
+    $("#sidebar").style.display = "flex";
     $("#showSidebar").checked = true;
   } else {
-    new ShowOrHide().hideSidebar();
+    $("#sidebar").style.display = "none";
     $("#showSidebar").checked = false;
   }
 
@@ -27,14 +29,14 @@ function initPage() {
     $(`#${tabs[i].id}TabContent`).style.display = "none";
   }
   // set general tab content to show in settings
-  $(`#general`).style.backgroundColor = "#434343";
-  $(`#generalTabContent`).style.display = "block";
+  $(`#generalSettings`).style.backgroundColor = "#434343";
+  $(`#generalSettingsTabContent`).style.display = "block";
 
   // set sidebar to left
   let sidebarPosition = sidebarRepository.getSidebarPosition();
   let className = sidebarPosition[0].toUpperCase() + sidebarPosition.substring(1);
   $("#selectSidebarPosition").value = sidebarPosition;
-  $(".sidebar")[0].classList.add(`place${className}`);
+  $("#sidebar").classList.add(`place${className}`);
 }
 initPage();
 

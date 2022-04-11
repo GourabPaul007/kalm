@@ -115,7 +115,7 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!-- SideBar -->
-    <div class="sidebar">
+    <div id="sidebar">
       <a href="" id="openYoutube" class="sidebarLinks">
         <i class="bi bi-youtube"></i>
       </a>
@@ -146,13 +146,13 @@
       </div>
       <div class="modalContent">
         <div class="tabs">
-          <button class="tabLinks" id="general">General</button>
-          <button class="tabLinks" id="clock">Clock</button>
-          <button class="tabLinks" id="theme">Theme</button>
-          <button class="tabLinks" id="sidebar">Sidebar</button>
+          <button class="tabLinks" id="generalSettings">General</button>
+          <button class="tabLinks" id="clockSettings">Clock</button>
+          <button class="tabLinks" id="themeSettings">Theme</button>
+          <button class="tabLinks" id="sidebarSettings">Sidebar</button>
         </div>
         <div class="tabContent">
-          <section id="generalTabContent">
+          <section id="generalSettingsTabContent">
             <div class="tabSubContents">
               <span>Select your font:&nbsp;&nbsp;&nbsp;</span>
               <select name="fontSelect" id="fontSelect">
@@ -168,7 +168,7 @@
               </select>
             </div>
           </section>
-          <section id="clockTabContent">
+          <section id="clockSettingsTabContent">
             <div class="tabSubContents">
               <span>Clock Type:&nbsp;&nbsp;&nbsp;</span>
               <select id="selectClockType">
@@ -177,9 +177,9 @@
               </select>
             </div>
           </section>
-          <section id="sidebarTabContent">
+          <section id="sidebarSettingsTabContent">
             <div class="tabSubContents">
-              <span>Show SideBar:&nbsp;&nbsp;&nbsp;</span>
+              <span>Show sidebar:&nbsp;&nbsp;&nbsp;</span>
               <input type="checkbox" id="showSidebar" />
             </div>
             <div class="tabSubContents">
@@ -192,7 +192,7 @@
               </select>
             </div>
           </section>
-          <section id="themeTabContent"></section>
+          <section id="themeSettingsTabContent"></section>
         </div>
       </div>
     </div>
@@ -244,7 +244,6 @@
     <!-- Services -->
     <script src="../../data.js"></script>
     <script src="../../background.js"></script>
-    <script src="../services/showOrHide.js"></script>
     <script src="../services/sidebar.js"></script>
     <script src="../services/clockService.js"></script>
     <script src="../services/todoListService.js"></script>
