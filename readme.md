@@ -1,0 +1,1 @@
+Minimalist new tab page
