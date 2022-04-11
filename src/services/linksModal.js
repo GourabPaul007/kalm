@@ -35,7 +35,6 @@ $("#linksModal").onclick = function (e) {
   }
   linksModalFunctionality.onClickMoreOptionsBtn(e);
   $("#editLinkButton").onclick = () => {
-    console.log(element);
     linksModalFunctionality.onPressEditButton(element);
   };
   $("#deleteLinkButton").onclick = () => {
@@ -102,7 +101,6 @@ class LinksModalFunctionality {
           $("#linkTitleInput").value = links[i].linkTitle;
           $("#linkLinksInput").value = links[i].linkLinks[0];
           $("#updateLinkButton").onclick = () => {
-            console.log($("#linkTitleInput").value);
             links[i].linkTitle = $("#linkTitleInput").value;
             links[i].linkLinks[0] = $("#linkLinksInput").value;
             chrome.storage.sync.set({ links: links }, function () {
