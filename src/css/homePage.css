@@ -77,11 +77,20 @@ h3 {
   left: 8px;
 }
 
-.top-right {
+#top-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   position: fixed;
-  top: 2vh;
-  right: 2vh;
+  top: 12px;
+  right: 16px;
+  color: rgba(255, 255, 255, 1);
 }
+
+/* .top-right:first-child{
+
+} */
 
 .bottom-third {
   position: fixed;

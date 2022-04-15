@@ -4,15 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/homePage.css" />
+
+    <!-- Top Left Components -->
+    <link rel="stylesheet" href="../css/topLeft/linksModal.css" />
+    <link rel="stylesheet" href="../css/topLeft/eachLink.css" />
+    <link rel="stylesheet" href="../css/topLeft/newLinkModal.css" />
+
+    <!-- Top Right Components -->
+    <link rel="stylesheet" href="../css/topRight/topRightWidgets.css" />
+    <link rel="stylesheet" href="../css/topRight/addEventModal.css" />
+    <link rel="stylesheet" href="../css/topRight/eventDetailsModal.css" />
+    <link rel="stylesheet" href="../css/topRight/updateEventModal.css" />
+
     <link rel="stylesheet" href="../css/analogClock.css" />
     <link rel="stylesheet" href="../css/settingsModal.css" />
     <link rel="stylesheet" href="../css/todoListModal.css" />
     <link rel="stylesheet" href="../css/sidebar.css" />
-    <link rel="stylesheet" href="../css/linksModal.css" />
-    <link rel="stylesheet" href="../css/eachLink.css" />
-    <link rel="stylesheet" href="../css/newLinkModal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins&display=swap" rel="stylesheet"> -->
@@ -23,18 +33,6 @@
   </head>
   <body>
     <div class="bg">
-      <div class="top-left">
-        <i class="bi bi-grid" id="linksModalOpenBtn"></i>
-      </div>
-
-      <div class="text-right top-right weather">
-        <div id="weather">
-          <i class="bi bi-brightness-high"></i>
-          <span>24 °C</span>
-        </div>
-        <div id="location">Kolkata</div>
-      </div>
-
       <div class="text-center centered">
         <div id="time-div">
           <h1 id="digitalClock"></h1>
@@ -59,6 +57,10 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
+    <!-- TOP LEFT -->
+    <div class="top-left">
+      <i class="bi bi-grid" id="linksModalOpenBtn"></i>
+    </div>
     <!-- Links Modal -->
     <div id="linksModal">
       <!-- LinksDiv with addLink button -->
@@ -108,6 +110,82 @@
           <button id="saveLinkButton">Save</button>
           <button id="updateLinkButton">Update</button>
         </div>
+      </div>
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-- TOP RIGHT -->
+    <div id="top-right">
+      <div class="addWidget" id="addWidget">
+        <i class="bi bi-plus-circle"></i>
+      </div>
+      <div class="topRightWidget">
+        <span style="font-size: 24px">3</span>
+        <span style="font-size: 20px">d</span>
+        <div style="font-size: 16px">Finish Project</div>
+      </div>
+    </div>
+
+    <!-- The Add Widget Modal -->
+    <div id="addWidgetModal">
+      <div id="addWidgetModalContent">
+        <h4>Keep track of important information with Widgets</h4>
+        <div>
+          <div id="addEvent">
+            <i class="bi bi-calendar-plus"></i>
+            Add Event
+          </div>
+          <div>
+            <i class="bi bi-alarm"></i>
+            Set Alarm
+          </div>
+        </div>
+      </div>
+
+      <!-- The Add Event Modal -->
+      <div id="addEventModal">
+        <div id="addEventHeaderAndClose">
+          <span>Add an event</span>
+          <span id="closeAddEventModal">
+            <i class="bi bi-x-circle"></i>
+            <span>Close</span>
+          </span>
+        </div>
+        <!-- <form id="eventForm"> -->
+        <br />
+        <label for="eventNameInput">Event Name</label>
+        <input type="text" id="eventNameInput" required />
+        <br />
+        <label for="eventDateTimeInput">Pick Date & Time</label>
+        <input type="datetime-local" id="eventDateTimeInput" required />
+        <br />
+        <div id="addEventButtonGroup">
+          <button id="saveEventButton">Save</button>
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+
+    <!-- The Update Event Modal -->
+    <div id="updateEventModal">
+      <div id="updateEventHeaderAndClose">
+        <span>Update event</span>
+        <span id="closeUpdateEventModal">
+          <i class="bi bi-x-circle"></i>
+          <!-- <span>Close</span> -->
+        </span>
+      </div>
+      <br />
+      <label for="updateEventNameInput">Event Name</label>
+      <input type="text" id="updateEventNameInput" required />
+      <br />
+      <label for="updateEventDateTimeInput">Pick Date & Time</label>
+      <input type="datetime-local" id="updateEventDateTimeInput" required />
+      <div id="updateEventButtonGroup">
+        <button id="deleteEventButton">Delete</button>
+        <button id="updateEventButton">Update</button>
       </div>
     </div>
 
@@ -200,6 +278,7 @@
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
     <!---------------------------------------------------------------------------------------------------------------->
+    <!-- BOTTOM RIGHT -->
     <!-- Todo List Button -->
     <div class="bottom-right">
       <!-- <i class="bi bi-gear" id="settingsBtn"></i> -->
@@ -235,6 +314,7 @@
     <script src="../helpers/logger.js"></script>
     <script src="../helpers/domManipulation.js"></script>
     <script src="../helpers/links.js"></script>
+    <script src="../helpers/dateTime.js"></script>
 
     <!-- Repositories -->
     <script src="../repository/clockRepository.js"></script>
@@ -244,11 +324,12 @@
     <!-- Services -->
     <script src="../../data.js"></script>
     <script src="../../background.js"></script>
+    <script src="../services/linksModal.js"></script>
+    <script src="../services/addWidgetService.js"></script>
     <script src="../services/sidebar.js"></script>
     <script src="../services/clockService.js"></script>
     <script src="../services/todoListService.js"></script>
     <script src="../services/settingsService.js"></script>
-    <script src="../services/linksModal.js"></script>
     <script src="../services/homePage.js"></script>
   </body>
 </html>

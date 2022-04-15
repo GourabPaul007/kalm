@@ -70,7 +70,7 @@ function initLinks() {
           <a href='${element.linkLinks[0]}'>
             <img
               class='favicon'
-              src='https://icons.duckduckgo.com/ip2/${removeProtocolNameFromLink(element.linkLinks[0])}.ico'
+              src='${faviconLink(element.linkLinks[0])}'
               alt=''
             />
             <span>&nbsp;${element.linkTitle}</span>

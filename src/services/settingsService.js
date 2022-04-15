@@ -18,6 +18,9 @@ $(".bg")[0].onclick = function (e) {
     settingsModal.style.display = "none";
     $("#settingsBtn").classList.remove("rotate");
   }
+  if (!addWidgetModal.contains(e.target)) {
+    addWidgetModal.style.display = "none";
+  }
 };
 
 // When the user clicks on <span> (x), close the settingsModal

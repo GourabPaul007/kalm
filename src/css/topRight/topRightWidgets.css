@@ -1,0 +1,109 @@
+#addWidget {
+  font-size: 24px;
+  /* color: rgba(255, 255, 255, 0.8); */
+}
+#addWidget:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/* addWidget & topRightWidget needs to be different for logic reasons */
+.addWidget {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0px 8px;
+}
+.addWidget:hover {
+  margin: 0px 8px;
+  color: white;
+  cursor: pointer;
+}
+.topRightWidget {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: right;
+  user-select: none;
+  margin: 0px 8px;
+  transition: color 0.1s ease-in;
+}
+.topRightWidget:hover {
+  margin: 0px 8px;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+#addWidgetModal {
+  transition: max-height 1s, width 1s;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  border-radius: 8px;
+  width: 280px;
+  position: fixed;
+  z-index: 1;
+  right: 64px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 16px;
+  animation-duration: 0.2s;
+  animation-name: slideDownAddWidgetModal;
+  animation-fill-mode: forwards;
+  color: white;
+}
+@keyframes slideDownAddWidgetModal {
+  0% {
+    top: 0px;
+    opacity: 0%;
+  }
+  100% {
+    top: 72px;
+  }
+}
+
+#addWidgetModalContent {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* the header of modal */
+#addWidgetModalContent > h4 {
+  text-align: center;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0px 24px;
+}
+
+/* the actual content div, contains icons */
+#addWidgetModalContent > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* text-align: center; */
+  flex-grow: 100%;
+  font-size: 16px;
+  width: auto;
+}
+
+/* each iconButton */
+#addWidgetModalContent > div > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+#addWidgetModalContent > div > div:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+#addWidgetModalContent > div > div > i {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 12px;
+}

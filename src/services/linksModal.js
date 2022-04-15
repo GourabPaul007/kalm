@@ -81,6 +81,9 @@ class LinksModalFunctionality {
     $("#linksModal").classList.add("next");
     $("#saveLinkButton").style.display = "block";
     $("#updateLinkButton").style.display = "none";
+    // erase the old values if exists
+    $("#linkTitleInput").value = "";
+    $("#linkLinksInput").value = "";
   }
   onPressGoBack() {
     $("#linksDiv").style.display = "flex";
@@ -110,7 +113,6 @@ class LinksModalFunctionality {
           };
         }
       }
-      $(".bruh");
     });
   }
   onPressDeleteButton(el) {

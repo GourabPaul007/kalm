@@ -1,0 +1,98 @@
+#addEventModal {
+  display: none;
+  flex-direction: column;
+  font-size: 16px;
+  animation-duration: 0.2s;
+  animation-name: makeLongAddEventModal;
+  animation-fill-mode: forwards;
+}
+@keyframes makeLongAddEventModal {
+  0% {
+    height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    height: 210px;
+    overflow: hidden;
+  }
+}
+
+/* The header of the create event modal, includes the close button in the same div */
+#addEventHeaderAndClose {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+}
+/* the close button */
+#closeAddEventModal {
+  color: #939393;
+  font-size: 16px;
+  margin-left: auto;
+}
+#closeAddEventModal .bi {
+  font-size: 24 !important;
+}
+#closeAddEventModal:hover {
+  cursor: pointer;
+  color: #cdcdcd;
+}
+
+/* name of the event */
+#eventNameInput {
+  color: white;
+  background-color: transparent;
+  margin: 4px 0px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+/* due time of the event */
+#eventDateTimeInput {
+  color: white;
+  background-color: transparent;
+  outline: 1px solid rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 3px;
+  margin: 4px 0px;
+  height: 24px;
+  font-size: 18px;
+}
+/* to set the calender icon on the right to white */
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* The Add Event Modal ButtonGroup */
+#addEventButtonGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+/* hide the update Event button */
+/* #updateEventButton {
+  display: none;
+} */
+
+#saveEventButton {
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  margin-left: auto;
+  color: white;
+  background-color: rgb(30, 130, 30);
+}
+#saveEventButton:hover {
+  cursor: pointer;
+  background-color: rgb(21, 85, 21);
+}
+
+/* .buttonDisabled {
+} */

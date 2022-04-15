@@ -1,6 +1,9 @@
 const types = new Set(["warn", "error"]);
 
+let env = ["dev", "prod"][0];
+
 function log(value, type) {
+  if (env !== "dev") return;
   let css = "font-size: 14px;";
   switch (type) {
     case undefined:
