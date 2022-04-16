@@ -8,10 +8,10 @@ let localImages = [
 ];
 
 let onlineImages = [
-  "url(https://i.ibb.co/KF5BNQH/sunset.jpg)",
-  "url(https://i.ibb.co/8cypszv/fiord.jpg)",
-  "url(https://i.ibb.co/16qksXL/snow-mountains.jpg)",
-  "url(https://i.ibb.co/HpKR3fv/dunes.jpg",
+  "url(https://i.ibb.co/KF5BNQH/1.jpg)",
+  "url(https://i.ibb.co/8cypszv/2.jpg)",
+  "url(https://i.ibb.co/16qksXL/3.jpg)",
+  "url(https://i.ibb.co/HpKR3fv/4.jpg",
 ];
 
 for (let i = 1; i <= 41; i++) {
@@ -19,4 +19,4 @@ for (let i = 1; i <= 41; i++) {
   localImages.push(element);
 }
 
-const images = localImages;
+const images = onlineImages;

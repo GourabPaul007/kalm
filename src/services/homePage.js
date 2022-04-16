@@ -3,7 +3,7 @@ localStorage.setItem("timeFormat", 12);
 localStorage.setItem("showSidebar", true);
 localStorage.setItem("sidebarPosition", "left");
 
-function initPage() {
+async function initPage() {
   // set background image on start
   document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
     return images[Math.floor(Math.random() * images.length)];
@@ -23,6 +23,17 @@ function initPage() {
     $("#showSidebar").checked = false;
   }
 
+  // Set Sidebar color based on background image
+  let image = new Image();
+  let imageSrc = await $(".bg")[0].style.backgroundImage;
+  let imageUrl = await imageSrc.substring(5, imageSrc.length - 2);
+  image.src = await imageUrl;
+  let values;
+  image.onload = () => {
+    values = getAverageRGB(image);
+    $("#sidebar").style.backgroundColor = `rgba(${values.r}, ${values.g}, ${values.b}, 0.8)`;
+  };
+
   // set all tab content to display none & tabs to not have bg color in settings
   let tabs = $(".tabs")[0].children;
   for (let i = 0; i < tabs.length; i++) {
@@ -32,7 +43,7 @@ function initPage() {
   $(`#generalSettings`).style.backgroundColor = "#434343";
   $(`#generalSettingsTabContent`).style.display = "block";
 
-  // set sidebar to left
+  // set sidebar to position
   let sidebarPosition = sidebarRepository.getSidebarPosition();
   let className = sidebarPosition[0].toUpperCase() + sidebarPosition.substring(1);
   $("#selectSidebarPosition").value = sidebarPosition;
