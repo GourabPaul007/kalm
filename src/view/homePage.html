@@ -289,6 +289,7 @@
       <!-- Modal content -->
       <div id="myDIV" class="header">
         <h4>Todo List</h4>
+        <i class="bi bi-x-circle" id="todoListCloseButton"></i>
       </div>
 
       <ul id="myUL">
@@ -300,8 +301,8 @@
         <li>Organize office</li> -->
       </ul>
       <div id="inputArea">
-        <input type="text" id="myInput" placeholder="Add Todo..." />
-        <span id="addNewElement" class="addBtn">Add</span>
+        <input type="text" id="todoInput" placeholder="Add Todo..." />
+        <span id="addNewTodo" class="addBtn">Add</span>
       </div>
     </div>
 
@@ -315,7 +316,7 @@
     <script src="../helpers/domManipulation.js"></script>
     <script src="../helpers/links.js"></script>
     <script src="../helpers/dateTime.js"></script>
-    <script src="../helpers/colorThief.js"></script>
+    <script src="../helpers/color.js"></script>
 
     <!-- Repositories -->
     <script src="../repository/clockRepository.js"></script>

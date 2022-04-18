@@ -19,4 +19,4 @@ for (let i = 1; i <= 41; i++) {
   localImages.push(element);
 }
 
-const images = onlineImages;
+const images = localImages;

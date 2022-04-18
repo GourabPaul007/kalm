@@ -56,7 +56,7 @@ document.getElementById("greetings").innerText = greetings();
 function greetings() {
   let currentHour = new Date().getHours();
   if (currentHour >= 5 && currentHour < 12) return "Good morning";
-  if (currentHour >= 12 && currentHour < 14) return "Good noon";
+  if (currentHour >= 12 && currentHour < 18) return "Good afternoon";
   if (currentHour >= 14 && currentHour < 18) return "Good afternoon";
   if (currentHour >= 18 && currentHour < 21) return "Good evening";
   if (currentHour >= 21) return "Good night";

@@ -59,7 +59,7 @@
   margin: 2px;
   text-decoration: none;
   font-size: 20px;
-  color: #c2c2c2;
+  color: #fcfcfc;
   /* background-color: rgba(33, 39, 45, 255); */
   padding: 6px 8px;
   border-radius: 4px;
@@ -74,7 +74,7 @@
   /* background-color: rgba(30, 36, 42, 1); */
   /* background-color: rgba(100, 40, 40, 0.2); */
   /* background: rgba(0, 0, 0, 0.8); */
-  backdrop-filter: invert(0.1);
+  backdrop-filter: invert(0.2);
 }
 #defaultLinks {
   fill: #818181;

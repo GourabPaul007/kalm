@@ -6,6 +6,7 @@ function makeTodo({ id, todo, isChecked }) {
   };
 }
 
+// Open Todo List on clicking todo in bottom right
 $("#openTodoListButton").onclick = (e) => {
   let todoListModal = $("#todoListModal");
   if (todoListModal.style.display === "flex") {
@@ -13,6 +14,11 @@ $("#openTodoListButton").onclick = (e) => {
   } else {
     todoListModal.style.display = "flex";
   }
+};
+
+// Close Todo List on clicking close icon in todo list modal
+$("#todoListCloseButton").onclick = () => {
+  todoListModal.style.display = "none";
 };
 
 $("#myUL").addEventListener("click", (e) => {
@@ -42,11 +48,19 @@ $("#myUL").addEventListener("click", (e) => {
 });
 
 // Create a new todo item when clicking on the "Add" button
-$("#addNewElement").onclick = () => newElement();
+$("#addNewTodo").onclick = () => newElement();
+
+// Create a new todo when pressing enter key after typing a new todo
+$("#todoInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    newElement();
+  }
+});
+
 function newElement() {
   let todos = JSON.parse(localStorage.getItem("todos")) ?? [];
 
-  var inputValue = document.getElementById("myInput").value;
+  var inputValue = $("#todoInput").value;
   if (inputValue) {
     let newTodo = makeTodo({
       id: `todo${Date.now()}`,
@@ -56,7 +70,7 @@ function newElement() {
 
     todos.push(newTodo);
     localStorage.setItem("todos", JSON.stringify(todos));
-    $("#myInput").value = "";
+    $("#todoInput").value = "";
     loadTodos();
   }
 }

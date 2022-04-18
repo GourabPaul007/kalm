@@ -41,9 +41,12 @@
 
 /* Style the header */
 .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 20px;
   background-color: transparent;
-  padding: 8px 20px;
+  padding: 8px 12px 8px 20px;
   color: white;
 }
 /* Clear floats after the header */
@@ -54,6 +57,14 @@
 }
 .header h4 {
   margin: 0;
+}
+.header i {
+  color: #b2b2b2;
+  margin-left: auto;
+}
+.header i:hover {
+  color: #fff;
+  cursor: pointer;
 }
 
 /* Remove margins and padding from the list */
@@ -107,7 +118,7 @@ ul li.checked {
 }
 
 /* Style the input */
-#myInput {
+#todoInput {
   margin: 0px 0px 0px 24px;
   border: none;
   outline: none;

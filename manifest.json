@@ -17,17 +17,19 @@
   "action": {
     "default_popup": "./idk/popup.html",
     "default_icon": {
-      "16": "/assets/icons/get_started16.png",
-      "32": "/assets/icons/get_started32.png",
-      "48": "/assets/icons/get_started48.png",
-      "128": "/assets/icons/get_started128.png"
+      "16": "/assets/icons/kalm16.png",
+      "32": "/assets/icons/kalm32.png",
+      "48": "/assets/icons/kalm48.png",
+      "128": "/assets/icons/kalm128.png",
+      "256": "/assets/icons/kalm256.png"
     }
   },
   "icons": {
-    "16": "/assets/icons/get_started16.png",
-    "32": "/assets/icons/get_started32.png",
-    "48": "/assets/icons/get_started48.png",
-    "128": "/assets/icons/get_started128.png"
+    "16": "/assets/icons/kalm16.png",
+    "32": "/assets/icons/kalm32.png",
+    "48": "/assets/icons/kalm48.png",
+    "128": "/assets/icons/kalm128.png",
+    "256": "/assets/icons/kalm256.png"
   },
   "options_page": "src/view/options.html",
   "chrome_url_overrides": {
