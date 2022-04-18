@@ -1,0 +1,23 @@
+.bottom-mid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+}
+
+.quote {
+  /* font-family: "Helvetica Neue"; */
+  color: white;
+  /* font-size: 18px; */
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+
+#quote-text {
+  font-size: 18px;
+}

@@ -1,3 +1,37 @@
+// Set the links in linksModal on startup
+function initLinks() {
+  let oldLinks = Array.from(document.getElementById("links").children);
+  for (let i = 1; i < oldLinks.length; i++) {
+    const element = oldLinks[i];
+    document.getElementById("links").removeChild(element);
+  }
+  // document.getElementById("linksModal").children.forEach((element) => {});
+  chrome.storage.sync.get("links", function (result) {
+    if (!result.links) return;
+    for (let i = 0; i < result.links.length; i++) {
+      const element = result.links[i];
+      document.getElementById("links").insertAdjacentHTML(
+        "beforeend",
+        `<div class="linkItem" id='${element.elementId}'>
+          <a href='${element.linkLinks[0]}'>
+            <img
+              class='favicon'
+              src='${faviconLink(element.linkLinks[0])}'
+              alt=''
+            />
+            <span>&nbsp;${element.linkTitle}</span>
+          </a>
+          <div class='linkMoreOptions' id='linkMoreOptions${element.elementId}'>
+            <i class="bi bi-three-dots moreOptionsIcon"></i>
+          </div>
+        </div>`
+        // <i class="bi bi-three-dots"></i>
+      );
+    }
+  });
+}
+initLinks();
+
 // When you click the linksModalOpenBtn, open the Links Modal
 $("#linksModalOpenBtn").onclick = function () {
   new LinksModalNavigation().openLinksModal();

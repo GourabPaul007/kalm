@@ -1,7 +1,7 @@
-localStorage.setItem("clockType", "digital");
-localStorage.setItem("timeFormat", 12);
-localStorage.setItem("showSidebar", true);
-localStorage.setItem("sidebarPosition", "left");
+// localStorage.setItem("clockType", "digital");
+// localStorage.setItem("timeFormat", 12);
+// localStorage.setItem("showSidebar", true);
+// localStorage.setItem("sidebarPosition", "left");
 
 async function initPage() {
   // set background image on start
@@ -48,10 +48,14 @@ async function initPage() {
   let className = sidebarPosition[0].toUpperCase() + sidebarPosition.substring(1);
   $("#selectSidebarPosition").value = sidebarPosition;
   $("#sidebar").classList.add(`place${className}`);
+
+  // set greetings on new tab
+  $("#greetings").innerText = greetings();
+
+  // set quotes on new tab
+  $("#quote-text").innerText = await getQuote();
 }
 initPage();
-
-document.getElementById("greetings").innerText = greetings();
 
 function greetings() {
   let currentHour = new Date().getHours();
@@ -63,55 +67,12 @@ function greetings() {
   return "Good Morning";
 }
 
-// Set the links in linksModal on startup
-function initLinks() {
-  let oldLinks = Array.from(document.getElementById("links").children);
-  for (let i = 1; i < oldLinks.length; i++) {
-    const element = oldLinks[i];
-    document.getElementById("links").removeChild(element);
-  }
-  // document.getElementById("linksModal").children.forEach((element) => {});
-  chrome.storage.sync.get("links", function (result) {
-    if (!result.links) return;
-    for (let i = 0; i < result.links.length; i++) {
-      const element = result.links[i];
-      document.getElementById("links").insertAdjacentHTML(
-        "beforeend",
-        `<div class="linkItem" id='${element.elementId}'>
-          <a href='${element.linkLinks[0]}'>
-            <img
-              class='favicon'
-              src='${faviconLink(element.linkLinks[0])}'
-              alt=''
-            />
-            <span>&nbsp;${element.linkTitle}</span>
-          </a>
-          <div class='linkMoreOptions' id='linkMoreOptions${element.elementId}'>
-            <i class="bi bi-three-dots moreOptionsIcon"></i>
-          </div>
-        </div>`
-        // <i class="bi bi-three-dots"></i>
-      );
-    }
-  });
+async function getQuote() {
+  let quoteText = "";
+  const response = await fetch("https://api.quotable.io/random?maxLength=50");
+  let data = await response.json();
+  console.log(data);
+  quoteText = `"${data.content}" - ${data.author}`;
+  return quoteText;
+  // return `"pee pee poo poo" - cum`;
 }
-initLinks();
-// src='https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${element.linkLinks[0]}&size=16'
-
-// chrome.tabs.getCurrent((tab) => {
-//   console.log("currentTab", currentTab);
-//   if (tab.id !== currentTab.id) {
-//     console.log("bruh");
-//     chrome.windows.remove(createdWindow.id, () => {});
-//   }
-// });
-
-// if ((await chrome.tabs.getCurrent()) != currentTab) {
-//   chrome.windows.remove(createdWindow.id, () => {});
-// }
-
-// chrome.windows.get(
-//   windowId: number,
-//   queryOptions?: QueryOptions,
-//   callback?: function,
-// )
