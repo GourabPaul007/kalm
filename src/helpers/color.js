@@ -1,5 +1,4 @@
 function getAverageRGB(imgEl) {
-  console.log(imgEl.src);
   var blockSize = 200, // only visit every 5 pixels
     defaultRGB = { r: 0, g: 0, b: 0 }, // for non-supporting envs
     canvas = document.createElement("canvas"),
@@ -21,7 +20,6 @@ function getAverageRGB(imgEl) {
   width = canvas.width = imgEl.width || imgEl.naturalWidth || imgEl.offsetWidth;
 
   context.drawImage(imgEl, 0, 0);
-  console.log(width, height);
 
   try {
     data = context.getImageData(0, 0, width, height);
@@ -38,7 +36,7 @@ function getAverageRGB(imgEl) {
     rgb.b += data.data[i + 2];
     // console.log("bruh don't");
   }
-  console.log(count);
+  // console.log(count);
 
   rgb.r = Math.floor(rgb.r / count);
   rgb.g = Math.floor(rgb.g / count);

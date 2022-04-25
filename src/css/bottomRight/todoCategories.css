@@ -1,0 +1,70 @@
+#todoCategoriesSection {
+  display: none;
+  position: absolute;
+  top: 48px;
+  font-size: 16px;
+  color: #b2b2b2;
+  background-color: rgb(60, 60, 60);
+  border-radius: 5px;
+  margin: 4px 20px 4px 20px;
+  padding: 6px 0px 6px 0px;
+  max-width: 200px;
+  min-width: 200px;
+  max-height: 100px;
+  overflow-y: scroll;
+  z-index: 2;
+}
+.showTodoCategoriesSection {
+  display: flex !important;
+}
+
+#todoCategoriesSection > ul {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+#todoCategoriesSection > ul > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 16px;
+  transition: 0.2s;
+  user-select: none;
+  list-style-type: none;
+}
+#todoCategoriesSection > ul > li:hover {
+  cursor: pointer;
+  background-color: rgba(90, 90, 90, 1);
+}
+
+/* The Back Button */
+#todoCategoriesSection > h4 > i {
+  font-size: 24px;
+  margin: 0px 0px 0px 12px;
+  padding: 0px 3px 3px 3px;
+  vertical-align: center;
+}
+#todoCategoriesSection > h4 > i:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+/* The header */
+#todoCategoriesSection > h4 {
+  font-size: 20px;
+  margin: 0px 0px 8px 0px;
+}
+
+/* The more Options icon in single li inside todoCategories modal */
+.todoCategoryLIMoreOptions {
+  margin-left: auto;
+  padding: 2px;
+  z-index: 4;
+}
+.todoCategoryLIMoreOptions:hover {
+  background-color: rgba(120, 120, 120, 1);
+  border-radius: 50%;
+}

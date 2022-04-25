@@ -6,7 +6,7 @@
 async function initPage() {
   // set background image on start
   document.getElementsByClassName("bg")[0].style.backgroundImage = (() => {
-    return images[Math.floor(Math.random() * images.length)];
+    return dailyImage();
   })();
 
   // set clock type on settings
@@ -15,7 +15,6 @@ async function initPage() {
   // show or hide sidebar on start
   let sidebarRepository = new SidebarRepository();
   if (sidebarRepository.getShowSidebar() === true) {
-    console.log("huh");
     $("#sidebar").style.display = "flex";
     $("#showSidebar").checked = true;
   } else {
@@ -54,6 +53,20 @@ async function initPage() {
 
   // set quotes on new tab
   $("#quote-text").innerText = await getQuote();
+
+  // localStorage.setItem(
+  //   "todoListCategories",
+  //   JSON.stringify([
+  //     { id: "today123", name: "Today" },
+  //     { id: "yesterday123", name: "Yesterday" },
+  //     { id: "tomorrow123", name: "Tomorrow" },
+  //     { id: "tomorrow1234", name: "Test" },
+  //     { id: "tomorrow1235", name: "Project" },
+  //     { id: "tomorrow1236", name: "Now" },
+  //     { id: "tomorrow1237", name: "Never" },
+  //     { id: "tomorrow1238", name: "Bruh" },
+  //   ])
+  // );
 }
 initPage();
 
@@ -68,11 +81,16 @@ function greetings() {
 }
 
 async function getQuote() {
-  let quoteText = "";
-  const response = await fetch("https://api.quotable.io/random?maxLength=50");
-  let data = await response.json();
-  console.log(data);
-  quoteText = `"${data.content}" - ${data.author}`;
-  return quoteText;
-  // return `"pee pee poo poo" - cum`;
+  // let quoteText = "";
+  // const response = await fetch("https://api.quotable.io/random?maxLength=50");
+  // let data = await response.json();
+  // quoteText = `"${data.content}" - ${data.author}`;
+  // return quoteText;
+  return `"pee pee poo poo" - cum`;
+}
+
+function dailyImage() {
+  let dayOfTheYear = Math.round((Date.now() - Date.parse(new Date().getFullYear(), 0, 0)) / 86400000);
+  return images[dayOfTheYear % (images.length - 1)];
+  // return images[Math.floor(Math.random() * images.length)];
 }

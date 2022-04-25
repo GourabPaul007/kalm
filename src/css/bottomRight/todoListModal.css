@@ -11,7 +11,7 @@
 
 #todoListModal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position: fixed;
   flex-direction: column;
   z-index: 1; /* Sit on top */
   right: 64px;
@@ -39,108 +39,37 @@
   }
 }
 
-/* Style the header */
-.header {
+#todoHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 20px;
-  background-color: transparent;
-  padding: 8px 12px 8px 20px;
+  padding: 8px 12px 4px 20px;
   color: white;
 }
-/* Clear floats after the header */
-.header:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.header h4 {
+#todoHeader > h4 {
   margin: 0;
 }
-.header i {
+/* the todo-list-chooser icon-button */
+#todoHeader > i:first-of-type {
+  color: #dadada;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px;
+  margin: 0px 4px 4px 4px;
+  vertical-align: 20%;
+}
+#todoHeader > i:first-of-type:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+/* the close todo-modal icon-button */
+#todoHeader > i:nth-of-type(2) {
   color: #b2b2b2;
   margin-left: auto;
 }
-.header i:hover {
+#todoHeader > i:nth-of-type(2):hover {
   color: #fff;
   cursor: pointer;
-}
-
-/* Remove margins and padding from the list */
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style the list items */
-ul li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  padding: 0px 8px 0px 24px;
-  font-size: 16px;
-  transition: 0.2s;
-  user-select: none;
-  list-style-type: none;
-}
-
-/* Darker background-color on hover */
-ul li:hover {
-  color: white;
-}
-
-/* When clicked on, add a background color and strike out text */
-ul li.checked {
-  text-decoration: line-through;
-}
-
-/* Style the delete button */
-.deleteTodoButton {
-  margin: 2px;
-  padding: 0px 5px;
-  font-size: 20px;
-}
-.deleteTodoButton:hover {
-  background-color: #f44336;
-  border-radius: 50%;
-}
-
-#inputArea {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px 0px 0px 0px;
-}
-
-/* Style the input */
-#todoInput {
-  margin: 0px 0px 0px 24px;
-  border: none;
-  outline: none;
-  width: 75%;
-  font-size: 16px;
-  background-color: transparent;
-  color: white;
-}
-
-/* Style the "Add" button */
-.addBtn {
-  padding: 8px;
-  margin: 0px 8px 0px 0px;
-  width: 60px;
-  background: #28a128;
-  border-radius: 24px;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.addBtn:hover {
-  background-color: #1e741e;
 }
