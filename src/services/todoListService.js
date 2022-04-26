@@ -115,7 +115,7 @@ loadTodos("today123");
 
 // Load the todo Categories in the todo categories modal
 function loadTodoCategories() {
-  let todoListCategories = JSON.parse(localStorage.getItem("todoListCategories"));
+  let todoListCategories = JSON.parse(localStorage.getItem("todoListCategories")) ?? [];
   let todoUL = document.createElement("ul");
   todoListCategories.forEach((element) => {
     let todoLI = document.createElement("li");
@@ -127,7 +127,8 @@ function loadTodoCategories() {
     todoUL.appendChild(todoLI);
   });
   // $("#todoCategoriesSection").removeChild($("#todoCategoriesSection").children[0]);
-  $("#todoCategoriesSection").replaceChildren(todoUL);
+  // $("#todoCategoriesSection").replaceChild($("#todoCategoriesUL"), todoUL);
+  $("#todoCategoriesUL").replaceWith(todoUL);
   // todoListCategories[0].name;
 }
 loadTodoCategories();
@@ -135,6 +136,7 @@ loadTodoCategories();
 // Open the list of todo categories section/ add a new todo category
 $("#openTodoCategoryButton").onclick = () => {
   $("#todoCategoriesSection").classList.toggle("showTodoCategoriesSection");
+  $("#moreOptionsDialogTodoCategory").classList.remove("showTodoMoreOptions");
 };
 
 // On Click inside todo category section to open todos of the selected category
@@ -145,11 +147,36 @@ $("#todoCategoriesSection").onclick = (e) => {
     $(".todoTitle")[0].id = e.target.id; //name the new todo-category id
     $("#todoCategoriesSection").classList.toggle("showTodoCategoriesSection"); // hide the todo-categories section
     loadTodos(e.target.id); // Load todos of the selected category
-    // TODO: show the todos for only the selected category & when entering a new todo, add the category to it
   } else if (e.target.classList.contains("todoCategoryLIMoreOptions")) {
     console.log(e.target);
-    // TODO: add delete/edit todo category modal option
+    let moreOptionsDialog = $("#moreOptionsDialogTodoCategory");
+    moreOptionsDialog.classList.toggle("showTodoMoreOptions");
+    moreOptionsDialog.style.top = `${e.clientY - 40}px`;
+    moreOptionsDialog.style.left = `${e.clientX - 80}px`;
+    // On Clicking edit button
+    $("#editTodoCategoryButton").onclick = (el) => {
+      console.log("edit", e);
+    };
+    // On Clicking delete button
+    $("#deleteTodoCategoryButton").onclick = (el) => {
+      let todoListCategories = JSON.parse(localStorage.getItem("todoListCategories"));
+      let newTodoListCategories = todoListCategories.filter((x) => x.id !== e.target.parentElement.id);
+      localStorage.setItem("todoListCategories", JSON.stringify(newTodoListCategories));
+      loadTodoCategories();
+      moreOptionsDialog.classList.remove("showTodoMoreOptions");
+      // show the Today category todos after deleting the todo category
+      loadTodos("today123");
+      $(".todoTitle")[0].id = "today123";
+    };
+    // TODO: add add/edit todo category modal option
   }
+};
+
+$("#addNewTodoCategory").onclick = (e) => {
+  let newTodoCategoryInputArea = $("#newTodoCategoryInputArea");
+  newTodoCategoryInputArea.style.display = "flex";
+  newTodoCategoryInputArea.style.top = `${e.clientY - 100}px`;
+  newTodoCategoryInputArea.style.left = `${e.clientX - 80}px`;
 };
 
 // $("#todoCategoriesSection").onclick = (e) => {

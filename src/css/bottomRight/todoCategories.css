@@ -68,3 +68,26 @@
   background-color: rgba(120, 120, 120, 1);
   border-radius: 50%;
 }
+
+#moreOptionsDialogTodoCategory {
+  display: none;
+  position: fixed;
+  flex-direction: column;
+  padding: 8px 0px 8px 0px;
+  background-color: #222222;
+  border-radius: 4px;
+  z-index: 5;
+}
+#moreOptionsDialogTodoCategory.showTodoMoreOptions {
+  display: flex;
+}
+#moreOptionsDialogTodoCategory button {
+  background-color: #222222;
+  padding: 8px 16px 8px 16px;
+  color: white;
+  border: none;
+}
+#moreOptionsDialogTodoCategory button:hover {
+  background-color: #323232;
+  cursor: pointer;
+}

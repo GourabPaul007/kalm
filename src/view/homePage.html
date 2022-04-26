@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../css/bottomRight/todoListModal.css" />
     <link rel="stylesheet" href="../css/bottomRight/singleTodoCategory.css" />
     <link rel="stylesheet" href="../css/bottomRight/todoCategories.css" />
+    <link rel="stylesheet" href="../css/bottomRight/addOrUpdateTodoCategory.css" />
     <!-- Center -->
     <link rel="stylesheet" href="../css/center/analogClock.css" />
     <link rel="stylesheet" href="../css/center/sidebar.css" />
@@ -298,13 +299,14 @@
           <!-- <div> -->
           <h4 class="todoTitle" id="today123">Today</h4>
           <i class="bi bi-chevron-down" id="openTodoCategoryButton"></i>
+          <i class="bi bi-clipboard-plus" id="addNewTodoCategory"></i>
           <!-- </div> -->
 
           <i class="bi bi-x-circle" id="todoListCloseButton"></i>
         </div>
         <!-- 2nd Modal for multiple todo categories -->
         <div id="todoCategoriesSection">
-          <ul>
+          <ul id="todoCategoriesUL">
             <li><span>Bruh</span><i class="bi bi-three-dots"></i></li>
             <li><span>Lorem</span><i class="bi bi-three-dots"></i></li>
             <li><span>Ipsum</span><i class="bi bi-three-dots"></i></li>
@@ -315,7 +317,17 @@
           <input type="text" id="todoInput" placeholder="Add Todo..." />
           <span id="addNewTodo" class="addBtn">Add</span>
         </div>
+        <!-- Add new todo category -->
+        <div id="newTodoCategoryInputArea">
+          <input type="text" id="newTodoCategoryInput" placeholder="Add new category..." />
+          <span id="addTodoCategoryBtn">Add</span>
+        </div>
       </div>
+    </div>
+    <!-- More Options Dialog On Side Of Each Todo Category -->
+    <div id="moreOptionsDialogTodoCategory">
+      <button id="editTodoCategoryButton">Edit</button>
+      <button id="deleteTodoCategoryButton">Delete</button>
     </div>
 
     <!---------------------------------------------------------------------------------------------------------------->

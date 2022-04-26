@@ -64,12 +64,22 @@
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
 }
+
 /* the close todo-modal icon-button */
 #todoHeader > i:nth-of-type(2) {
   color: #b2b2b2;
-  margin-left: auto;
 }
 #todoHeader > i:nth-of-type(2):hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+/* the close todo-modal icon-button */
+#todoHeader > i:nth-of-type(3) {
+  color: #b2b2b2;
+  margin-left: auto;
+}
+#todoHeader > i:nth-of-type(3):hover {
   color: #fff;
   cursor: pointer;
 }
