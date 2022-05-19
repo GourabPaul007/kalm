@@ -54,7 +54,8 @@ function digitalClock() {
     second: "2-digit",
     hour12: tf === "12" ? true : false,
   });
-  $("#digitalClock").innerText = time.substring(0, 5);
+  let timeString = time.substring(0, 5);
+  !timeString.startsWith("0") ? timeString : ($("#digitalClock").innerText = timeString.substring(1));
 }
 
 function initTimeFormat() {

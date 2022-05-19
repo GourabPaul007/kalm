@@ -55,7 +55,7 @@ async function initPage() {
   $("#quote-text").innerText = await getQuote();
 
   // localStorage.setItem(
-  //   "todoListCategories",
+  //   "todoCategories",
   //   JSON.stringify([
   //     { id: "today123", name: "Today" },
   //     { id: "yesterday123", name: "Yesterday" },

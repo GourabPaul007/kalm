@@ -1,9 +1,10 @@
-function makeTodo({ id, todo, isChecked, category }) {
+function makeTodo({ id, todo, isChecked, categoryId, categoryName }) {
   return {
     id: id ?? `todo${Date.now()}`,
     todo: todo ?? "",
     isChecked: isChecked ?? false,
-    category: category ?? "today123",
+    categoryId: categoryId ?? "today123",
+    categoryName: categoryName ?? "Today",
   };
 }
 
@@ -23,6 +24,7 @@ $("#todoListCloseButton").onclick = () => {
   todoListModal.style.display = "none";
 };
 
+// Crossing or Deleting Todos
 $("#myUL").addEventListener("click", (e) => {
   let todos = JSON.parse(localStorage.getItem("todos")) ?? [];
   // If clicked on the li element of todo, make the todo crossed & vice versa
@@ -45,44 +47,45 @@ $("#myUL").addEventListener("click", (e) => {
       }
     }
     localStorage.setItem("todos", JSON.stringify(todos));
-    loadTodos();
+    loadTodos(todos[i].categoryId, todos[i]);
   }
 });
 
 // Create a new todo item when clicking on the "Add" button
-$("#addNewTodo").onclick = () => newElement();
+$("#addNewTodo").onclick = () => newTodoElement();
 
 // Create a new todo when pressing enter key after typing a new todo
 $("#todoInput").addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    newElement();
+    newTodoElement();
   }
 });
 
-function newElement() {
+function newTodoElement() {
   let todos = JSON.parse(localStorage.getItem("todos")) ?? [];
 
   var inputValue = $("#todoInput").value;
   let title = $(".todoTitle")[0].innerText;
-  let category = $(".todoTitle")[0].id;
-  console.log("title:", title);
-  console.log("category:", category);
+  let categoryId = $(".todoTitle")[0].id;
   if (inputValue) {
     let newTodo = makeTodo({
       id: `todo${Date.now()}`,
       todo: inputValue,
       isChecked: false,
-      category: category,
+      categoryId: categoryId,
+      categoryName: title,
     });
 
     todos.push(newTodo);
     localStorage.setItem("todos", JSON.stringify(todos));
     $("#todoInput").value = "";
-    loadTodos(category);
+    loadTodos(categoryId, title);
   }
 }
 
-function loadTodos(category) {
+function loadTodos(categoryId, categoryName) {
+  // add the category Name on top of todos(in the header)
+  $(".todoTitle")[0].innerText = `${categoryName} `;
   // remove old todos from DOM
   let oldTodos = Array.from($("#myUL").children);
   for (let i = 0; i < oldTodos.length; i++) {
@@ -93,7 +96,7 @@ function loadTodos(category) {
   let displayTodos = [];
   for (let i = 0; i < todos.length; i++) {
     const todo = todos[i];
-    if (category === todo.category) {
+    if (categoryId === todo.categoryId) {
       displayTodos.push(todo);
     }
   }
@@ -111,25 +114,29 @@ function loadTodos(category) {
     );
   }
 }
-loadTodos("today123");
+loadTodos("today123", "Today");
 
 // Load the todo Categories in the todo categories modal
 function loadTodoCategories() {
-  let todoListCategories = JSON.parse(localStorage.getItem("todoListCategories")) ?? [];
+  let todoCategories = JSON.parse(localStorage.getItem("todoCategories")) ?? [];
   let todoUL = document.createElement("ul");
-  todoListCategories.forEach((element) => {
+  todoUL.id = "todoCategoriesUL";
+  todoCategories.forEach((element) => {
     let todoLI = document.createElement("li");
     todoLI.id = element.id;
     let todoLIText = document.createElement("span");
     todoLIText.innerText = element.name;
     todoLI.append(todoLIText);
-    todoLI.insertAdjacentHTML("beforeend", "<i class='bi bi-three-dots todoCategoryLIMoreOptions'></i>");
+    // DONT PUT THE MORE-OPTIONS ICON IN TODAY CATEGORY
+    if (element.id !== "today123") {
+      todoLI.insertAdjacentHTML("beforeend", "<i class='bi bi-three-dots todoCategoryLIMoreOptions'></i>");
+    }
     todoUL.appendChild(todoLI);
   });
   // $("#todoCategoriesSection").removeChild($("#todoCategoriesSection").children[0]);
   // $("#todoCategoriesSection").replaceChild($("#todoCategoriesUL"), todoUL);
   $("#todoCategoriesUL").replaceWith(todoUL);
-  // todoListCategories[0].name;
+  // todoCategories[0].name;
 }
 loadTodoCategories();
 
@@ -137,6 +144,7 @@ loadTodoCategories();
 $("#openTodoCategoryButton").onclick = () => {
   $("#todoCategoriesSection").classList.toggle("showTodoCategoriesSection");
   $("#moreOptionsDialogTodoCategory").classList.remove("showTodoMoreOptions");
+  loadTodoCategories();
 };
 
 // On Click inside todo category section to open todos of the selected category
@@ -146,37 +154,89 @@ $("#todoCategoriesSection").onclick = (e) => {
     $(".todoTitle")[0].innerText = `${e.target.innerText} `; //name the new todo-category title
     $(".todoTitle")[0].id = e.target.id; //name the new todo-category id
     $("#todoCategoriesSection").classList.toggle("showTodoCategoriesSection"); // hide the todo-categories section
-    loadTodos(e.target.id); // Load todos of the selected category
+    loadTodos(e.target.id, e.target.innerText); // Load todos of the selected category
   } else if (e.target.classList.contains("todoCategoryLIMoreOptions")) {
     console.log(e.target);
     let moreOptionsDialog = $("#moreOptionsDialogTodoCategory");
     moreOptionsDialog.classList.toggle("showTodoMoreOptions");
     moreOptionsDialog.style.top = `${e.clientY - 40}px`;
     moreOptionsDialog.style.left = `${e.clientX - 80}px`;
-    // On Clicking edit button
-    $("#editTodoCategoryButton").onclick = (el) => {
-      console.log("edit", e);
+    // ON CLICKING THE EDIT BUTTON
+    $("#editTodoCategoryButton").onclick = () => {
+      let todoCategories = JSON.parse(localStorage.getItem("todoCategories"));
+      let editTodoCategoryInputArea = $("#editTodoCategoryInputArea");
+      // this filter returns the todo category that matches the id
+      let toBeEditedTodoCategory = todoCategories.filter((x) => x.id === e.target.parentElement.id)[0];
+      if (editTodoCategoryInputArea.style.display === "flex") {
+        editTodoCategoryInputArea.style.display = "none";
+      } else {
+        editTodoCategoryInputArea.style.display = "flex";
+        newTodoCategoryInputArea.style.top = `${e.clientY - 10}px`;
+        newTodoCategoryInputArea.style.left = `${e.clientX - 80}px`;
+
+        moreOptionsDialog.classList.remove("showTodoMoreOptions"); // REMOVE THE EDIT/DELETE MODAL
+        $("#todoCategoriesSection").classList.remove("showTodoCategoriesSection"); // REMOVE THE todoCategoriesSection MODAL
+        $("#editTodoCategoryInput").value = toBeEditedTodoCategory.name;
+        // UPDATE AND SAVE THE CATEGORY
+        $("#updateTodoCategoryBtn").onclick = () => {
+          // Iterate through all the categories and update the one with correct id
+          for (let i = 0; i < todoCategories.length; i++) {
+            if (todoCategories[i].id === toBeEditedTodoCategory.id) {
+              todoCategories[i].name = $("#editTodoCategoryInput").value;
+              localStorage.setItem("todoCategories", JSON.stringify(todoCategories));
+              break;
+            }
+          }
+          // CLEAN UP
+          editTodoCategoryInputArea.style.display = "none";
+          moreOptionsDialog.classList.remove("showTodoMoreOptions");
+        };
+      }
     };
-    // On Clicking delete button
-    $("#deleteTodoCategoryButton").onclick = (el) => {
-      let todoListCategories = JSON.parse(localStorage.getItem("todoListCategories"));
-      let newTodoListCategories = todoListCategories.filter((x) => x.id !== e.target.parentElement.id);
-      localStorage.setItem("todoListCategories", JSON.stringify(newTodoListCategories));
-      loadTodoCategories();
+    // ON CLICKING THE DELETE BUTTON
+    $("#deleteTodoCategoryButton").onclick = () => {
+      let todoCategories = JSON.parse(localStorage.getItem("todoCategories"));
+      let newTodoCategories = todoCategories.filter((x) => x.id !== e.target.parentElement.id);
+      localStorage.setItem("todoCategories", JSON.stringify(newTodoCategories));
+      // remove the edit/delete modal after deletion of a category
       moreOptionsDialog.classList.remove("showTodoMoreOptions");
+      // remove the todo-categories section after deletion of a category
+      $("#todoCategoriesSection").classList.remove("showTodoCategoriesSection");
       // show the Today category todos after deleting the todo category
-      loadTodos("today123");
+      loadTodos("today123", "Today");
       $(".todoTitle")[0].id = "today123";
     };
     // TODO: add add/edit todo category modal option
   }
 };
 
+// ADD NEW TODO CATEGORY ON CLICKING THE 'addNewTodoCategory' ICONBUTTON
 $("#addNewTodoCategory").onclick = (e) => {
   let newTodoCategoryInputArea = $("#newTodoCategoryInputArea");
-  newTodoCategoryInputArea.style.display = "flex";
-  newTodoCategoryInputArea.style.top = `${e.clientY - 100}px`;
-  newTodoCategoryInputArea.style.left = `${e.clientX - 80}px`;
+  if (newTodoCategoryInputArea.style.display === "flex") {
+    newTodoCategoryInputArea.style.display = "none";
+  } else {
+    newTodoCategoryInputArea.style.display = "flex";
+    newTodoCategoryInputArea.style.top = `${e.clientY - 100}px`;
+    newTodoCategoryInputArea.style.left = `${e.clientX - 80}px`;
+    $("#addTodoCategoryBtn").onclick = () => {
+      let todoCategories = JSON.parse(localStorage.getItem("todoCategories")) ?? [];
+      let newTodoCategoryName = $("#newTodoCategoryInput").value;
+      let newTodoCategoryId = `todoCategory${Date.now()}`;
+      if (!newTodoCategoryName || newTodoCategoryName == "") return;
+      todoCategories.push({
+        id: newTodoCategoryId,
+        name: newTodoCategoryName,
+      });
+      localStorage.setItem("todoCategories", JSON.stringify(todoCategories));
+      loadTodos(newTodoCategoryId, newTodoCategoryName);
+      $(".todoTitle")[0].innerText = `${newTodoCategoryName} `;
+      $(".todoTitle")[0].id = newTodoCategoryId;
+      // Clearing up stuff
+      $("#newTodoCategoryInput").value = "";
+      newTodoCategoryInputArea.style.display = "none";
+    };
+  }
 };
 
 // $("#todoCategoriesSection").onclick = (e) => {

@@ -37,3 +37,44 @@
   cursor: pointer;
   background-color: #1e741e;
 }
+
+#editTodoCategoryInputArea {
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  width: 240px;
+  height: 60px;
+  background-color: rgba(60, 60, 60, 1);
+  border-radius: 12px;
+  padding: 0px 12px 0px 0px;
+  color: white;
+  z-index: 5;
+}
+
+/* The addTodoCategory input area */
+#editTodoCategoryInput {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 75%;
+  margin: 0px 0px 0px 16px;
+  font-size: 16px;
+}
+
+/* The addTodoCategory add button */
+#updateTodoCategoryBtn {
+  padding: 8px;
+  margin: 0px 8px 0px 0px;
+  font-size: 16px;
+  text-align: center;
+  background-color: rgb(31, 169, 204);
+  border-radius: 24px;
+  width: 60px;
+}
+#updateTodoCategoryBtn:hover {
+  cursor: pointer;
+  background-color: rgb(25, 131, 158);
+}
