@@ -9,7 +9,7 @@ $("#addWidget").onclick = function () {
 };
 
 // Show the addEventModal on addEvent Button Click in the main modal
-$("#addEvent").onclick = function (e) {
+$("#addEvent").onclick = (e) => {
   $("#addEventModal").style.display = "flex";
   $("#addWidgetModalContent").style.display = "none";
 };
