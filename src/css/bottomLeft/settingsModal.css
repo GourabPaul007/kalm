@@ -6,6 +6,7 @@
   left: 64px;
   bottom: 48px;
   width: 600px;
+  max-height: 600px;
   overflow-y: none;
   color: #b2b2b2;
   margin: 12px;
@@ -94,7 +95,7 @@
 
 .tabLinks {
   padding: 8px 16px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   background-color: transparent;
   color: #b2b2b2;
   border: none;

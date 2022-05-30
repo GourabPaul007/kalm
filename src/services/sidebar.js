@@ -47,3 +47,10 @@ $("#openDiscord").onclick = async (e) => {
   currentTab = await chrome.tabs.getCurrent();
   createdWindow = await chrome.windows.create(createData("https://discord.com/app"));
 };
+
+$("#openGmail").onclick = async (e) => {
+  e.preventDefault();
+  removePreviousWindow();
+  currentTab = await chrome.tabs.getCurrent();
+  createdWindow = await chrome.windows.create(createData("https://gmail.com/app"));
+};

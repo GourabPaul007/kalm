@@ -54,6 +54,20 @@ async function initPage() {
   // set quotes on new tab
   $("#quote-text").innerText = await getQuote();
 
+  // set font on new tab
+  let savedFont = new SettingsRepository().getFont();
+  $("#fontSelect").value = new SettingsRepository().getFont();
+  var font = new FontFace(savedFont, `url(../../assets/fonts/${savedFont}.ttf)`);
+  await font
+    .load()
+    .then(function (loaded_face) {
+      document.fonts.add(loaded_face);
+      document.body.style.fontFamily = `${loaded_face.family}`;
+    })
+    .catch(function (error) {
+      console.log("Something went wrong during font loading.", error);
+    });
+
   // localStorage.setItem(
   //   "todoCategories",
   //   JSON.stringify([

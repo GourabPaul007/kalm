@@ -1,5 +1,10 @@
 class SettingsRepository {
-  getFont() {}
+  getFont() {
+    let fontInLocalStorage = localStorage.getItem("font");
+    return fontInLocalStorage;
+  }
 
-  setFont() {}
+  setFont(font) {
+    JSON.stringify(localStorage.setItem("font", font));
+  }
 }

@@ -38,9 +38,28 @@ $(".close")[0].onclick = function () {
 //   }
 // };
 
+// On clicking left side tabs on settings
+$(".tabs")[0].onclick = (e) => {
+  // set all tab content to display none & tabs to not have bg color
+  let tabs = $(".tabs")[0].children;
+  for (let i = 0; i < tabs.length; i++) {
+    $(`#${tabs[i].id}TabContent`).style.display = "none";
+    $(`#${tabs[i].id}`).style.backgroundColor = "transparent";
+  }
+  // set clicked tab content to show & set selected tab to have bg color
+  $(`#${e.target.id}`).style.backgroundColor = "#434343";
+  $(`#${e.target.id}TabContent`).style.display = "block";
+};
+
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// General Tab
 // change font
 $("#fontSelect").addEventListener("change", async (e) => {
-  var font = new FontFace(e.target.value, `url(../../assets/fonts/${e.target.value}.ttf)`);
+  new SettingsRepository().setFont(e.target.value);
+  let newFont = new SettingsRepository().getFont();
+  var font = new FontFace(newFont, `url(../../assets/fonts/${newFont}.ttf)`);
   await font
     .load()
     .then(function (loaded_face) {
@@ -58,6 +77,21 @@ $("#timeFormatSelect").addEventListener("change", async (e) => {
   clockRepository.setTimeFormat(e.target.value);
 });
 
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// Clock Tab
+// select clock type in clock-settings tab
+$("#selectClockType").addEventListener("change", (e) => {
+  let clockRepository = new ClockRepository();
+  clockRepository.setClockType(e.target.value);
+  initClockType(e.target.value); // clockService.js
+});
+
+// ====================================================================================================================
+// ====================================================================================================================
+// ====================================================================================================================
+// Sidebar Tab
 // show or hide sidebar
 $("#showSidebar").addEventListener("change", (e) => {
   let sidebarRepository = new SidebarRepository();
@@ -101,38 +135,8 @@ $("#selectSidebarPosition").addEventListener("change", (e) => {
   }
 });
 
-$(".tabs")[0].onclick = (e) => {
-  // set all tab content to display none & tabs to not have bg color
-  let tabs = $(".tabs")[0].children;
-  for (let i = 0; i < tabs.length; i++) {
-    console.log(tabs[i].id);
-    $(`#${tabs[i].id}TabContent`).style.display = "none";
-    $(`#${tabs[i].id}`).style.backgroundColor = "transparent";
-  }
-  // set clicked tab content to show & set selected tab to have bg color
-  $(`#${e.target.id}`).style.backgroundColor = "#434343";
-  $(`#${e.target.id}TabContent`).style.display = "block";
-};
+// $("#showYoutube").addEventListener("change",(e)=>{
+//   if (e.target.checked) {
 
-$("#selectClockType").addEventListener("change", (e) => {
-  let clockRepository = new ClockRepository();
-  clockRepository.setClockType(e.target.value);
-  initClockType(e.target.value); // clockService.js
-});
-
-// $("#sidebarTabContent").onclick = (e) => {
-//   $("sidebarTabContent").style.display = "none";
-//   $("generalTabContent").style.display = "none";
-// };
-
-// $("#openFile").onclick = async function () {
-//   // [fileHandle] = await window.showOpenFilePicker();
-//   let urlCreator = window.URL;
-//   const dirHandle = await window.showDirectoryPicker();
-//   for await (const entry of dirHandle.values()) {
-//     let file = await entry.getFile();
-//     let blob = await file.stream();
-//     console.log(entry.kind, entry.name, file);
-//     console.log(urlCreator.createObjectURL(blob));
 //   }
-// };
+// })
